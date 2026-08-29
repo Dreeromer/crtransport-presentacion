@@ -1,0 +1,1358 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CR Transport — transporte de carga terrestre con operación propia en Lima, Chiclayo, Trujillo, Piura y Tarapoto. Carga pesada, última milla, abastecimiento a tiendas y almacén propio en Chiclayo.">
+<meta name="theme-color" content="#060B1C">
+<title>CR Transport</title>
+
+<style>
+/* ═══════════ Tipografías locales ═══════════ */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(fonts/Archivo_var.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(fonts/Archivo_var_ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBM_Plex_Mono_400.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBM_Plex_Mono_500.woff2) format('woff2')}
+</style>
+
+<style>
+/* ═══════════════════════ TOKENS ═══════════════════════ */
+:root{
+  /* Paleta derivada del logo: azul marino + verde lima */
+  --night:#060B1C;      /* fondo */
+  --night-2:#08102A;
+  --panel:#0C1533;      /* superficies elevadas */
+  --panel-2:#111C42;
+  --line:#1A2650;
+  --line-soft:#131D3E;
+  --navy:#16215E;       /* azul de marca */
+  --bone:#E7ECF7;       /* texto */
+  --muted:#93A0C0;
+  --dim:#5F6D91;
+  --lime:#A8CC55;       /* acento de marca */
+  --lime-hi:#C9E884;
+  --amber:#E0A93F;      /* dato pendiente de confirmar */
+
+  /* Motion: una sola curva, cuatro duraciones */
+  --e:cubic-bezier(.16,1,.3,1);
+  --t-micro:.2s; --t-short:.5s; --t-long:.9s; --t-hero:1.4s;
+
+  --fs-hero:clamp(2.6rem,7vw,6.4rem);
+  --fs-h2:clamp(1.9rem,4.4vw,3.6rem);
+  --fs-h3:clamp(1.1rem,1.9vw,1.5rem);
+  --fs-lead:clamp(1.04rem,1.45vw,1.3rem);
+  --fs-body:clamp(.96rem,1vw,1.04rem);
+  --fs-label:.68rem;
+
+  --gut:clamp(1.15rem,5vw,5rem);
+  --maxw:1420px;
+  --rail:clamp(0px,3.4vw,58px);   /* ancho reservado por el riel de ruta */
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--night);color:var(--bone);
+  font-family:'Archivo',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:var(--fs-body);font-variation-settings:"wdth" 100;
+  line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--lime);color:var(--night)}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:2px}
+
+/* grano: unifica fotos de celular con fotos de operación */
+body::after{
+  content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════ TIPOGRAFÍA ═══════════════════════ */
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{
+  font-size:var(--fs-hero);font-weight:800;font-variation-settings:"wdth" 116,"wght" 800;
+  line-height:.94;letter-spacing:-.035em;text-transform:uppercase;
+}
+h2{
+  font-size:var(--fs-h2);font-weight:700;font-variation-settings:"wdth" 112,"wght" 700;
+  line-height:1.0;letter-spacing:-.028em;text-transform:uppercase;
+}
+h3{
+  font-size:var(--fs-h3);font-weight:600;font-variation-settings:"wdth" 104,"wght" 600;
+  line-height:1.2;letter-spacing:-.012em;
+}
+p{margin:0}
+.lead{font-size:var(--fs-lead);line-height:1.5;color:#D3DBEE;max-width:36ch}
+.body{color:var(--muted);max-width:64ch}
+.body a{color:var(--lime);text-decoration:none;border-bottom:1px solid rgba(168,204,85,.35)}
+.body a:hover{border-bottom-color:var(--lime)}
+
+.mono,.label,.sec-tag{
+  font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:var(--fs-label);letter-spacing:.2em;text-transform:uppercase;
+}
+.label{color:var(--lime)}
+.label--mute{color:var(--dim)}
+.hl{color:var(--lime)}
+
+/* dato pendiente de confirmar con el cliente */
+.tbc{
+  font-family:'IBM Plex Mono',monospace;font-size:.82em;letter-spacing:.06em;
+  color:var(--amber);border-bottom:1px dashed rgba(224,169,63,.5);
+  white-space:nowrap;cursor:help;
+}
+
+/* ═══════════════════════ ESTRUCTURA ═══════════════════════ */
+section{position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:calc(var(--gut) + var(--rail)) var(--gut)}
+.sec{padding-block:clamp(5rem,11vw,10rem)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(1.4rem,4vw,4rem);align-items:end}
+@media(max-width:900px){.sec-head{grid-template-columns:1fr;align-items:start}}
+.sec-tag{
+  display:flex;align-items:center;gap:.6rem;color:var(--dim);margin-bottom:1.1rem;
+  flex-wrap:wrap;
+}
+.sec-tag b{font-weight:500;color:var(--lime);letter-spacing:.2em}
+.sec-tag i{flex:0 0 auto;width:26px;height:1px;background:var(--line);font-style:normal}
+.rule{height:1px;background:var(--line-soft);border:0;margin:0}
+
+/* ═══════════ Riel de ruta: la firma de la página ═══════════ */
+.route{
+  position:fixed;left:clamp(10px,2vw,26px);top:0;bottom:0;width:2px;z-index:90;
+  background:var(--line-soft);pointer-events:none;
+}
+.route__fill{position:absolute;top:0;left:0;width:100%;height:0;
+  background:linear-gradient(180deg,var(--navy),var(--lime));}
+.route__dot{
+  position:absolute;left:50%;top:0;width:9px;height:9px;margin-left:-4.5px;margin-top:-4.5px;
+  border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(168,204,85,.16),0 0 18px rgba(168,204,85,.6);
+}
+.route__stop{position:absolute;left:50%;transform:translateX(-50%);width:7px;height:7px;margin-top:-3.5px;
+  border-radius:50%;background:var(--night);border:1px solid var(--line);transition:all var(--t-short) var(--e)}
+.route__stop span{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);white-space:nowrap;opacity:0;transition:opacity var(--t-short) var(--e);
+}
+.route__stop.is-on{background:var(--lime);border-color:var(--lime);box-shadow:0 0 12px rgba(168,204,85,.55)}
+.route__stop.is-on span{opacity:1;color:var(--bone)}
+@media(max-width:820px){.route{display:none}}
+
+/* ═══════════════════════ NAV ═══════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding:.75rem var(--gut) .75rem calc(var(--gut) + var(--rail));
+  background:linear-gradient(to bottom,rgba(6,11,28,.97) 45%,rgba(6,11,28,.72) 78%,rgba(6,11,28,0));
+  transform:translateY(-110%);transition:transform var(--t-long) var(--e);
+}
+.nav.is-on{transform:translateY(0)}
+.nav__mark{display:flex;align-items:center;gap:.55rem;font-weight:700;font-variation-settings:"wdth" 112,"wght" 700;
+  letter-spacing:.01em;text-transform:uppercase;font-size:.92rem;white-space:nowrap}
+.nav__mark img{width:26px;height:26px;object-fit:contain}
+.nav__links{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0}
+.nav__links a{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color var(--t-micro) var(--e)}
+.nav__links a:hover{color:var(--lime)}
+.nav__cta{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;padding:.5rem .9rem;border:1px solid var(--line);border-radius:2px;color:var(--bone);
+  transition:border-color var(--t-micro) var(--e),background var(--t-micro) var(--e)}
+.nav__cta:hover{border-color:var(--lime);background:rgba(168,204,85,.09)}
+@media(max-width:1080px){.nav__links{display:none}}
+
+/* ═══════════════════════ HERO ═══════════════════════ */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;
+  padding-inline:calc(var(--gut) + var(--rail)) var(--gut)}
+.hero__scene{position:absolute;inset:0;perspective:900px;perspective-origin:50% 44%;overflow:hidden}
+.hero__world{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+
+/* calzada en fuga */
+.floor{
+  position:absolute;left:50%;top:56%;width:340vw;height:260vh;margin-left:-170vw;
+  transform-origin:50% 0;transform:rotateX(76deg);
+  background:
+    linear-gradient(to right,transparent 0,rgba(22,33,94,.55) 18%,rgba(22,33,94,.55) 82%,transparent 100%);
+}
+.floor__rush{
+  position:absolute;inset:-100% 0 0 0;height:300%;
+  background-image:repeating-linear-gradient(to bottom,rgba(168,204,85,.75) 0 8px,transparent 8px 128px);
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%,#000 70%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 30%,#000 70%,transparent 100%);
+  width:5px;left:50%;margin-left:-2.5px;
+  animation:rush 2.4s linear infinite;
+}
+.floor__lanes{
+  position:absolute;inset:-100% 0 0 0;height:300%;
+  background-image:repeating-linear-gradient(to right,rgba(120,150,220,.22) 0 1px,transparent 1px 110px);
+  -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 22%,#000,transparent 76%);
+  mask-image:radial-gradient(ellipse 60% 55% at 50% 22%,#000,transparent 76%);
+}
+.floor__flow{
+  position:absolute;inset:-100% 0 0 0;height:300%;
+  background-image:repeating-linear-gradient(to bottom,rgba(120,150,220,.2) 0 2px,transparent 2px 86px);
+  -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 22%,#000,transparent 76%);
+  mask-image:radial-gradient(ellipse 60% 55% at 50% 22%,#000,transparent 76%);
+  animation:rush 3.6s linear infinite;
+}
+@keyframes rush{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,132px,0)}}
+
+/* horizonte */
+.hero__horizon{
+  position:absolute;left:0;right:0;top:0;height:62%;
+  background:
+    radial-gradient(ellipse 46% 64% at 50% 100%,rgba(24,37,104,.95),transparent 72%),
+    radial-gradient(ellipse 20% 28% at 50% 100%,rgba(168,204,85,.18),transparent 70%);
+}
+/* placas de flota flotando en profundidad */
+.hero__plate{
+  position:absolute;left:50%;top:50%;width:clamp(146px,15vw,244px);
+  transform-style:preserve-3d;will-change:transform,opacity;opacity:0;
+}
+.hero__plate img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:3px;
+  border:1px solid rgba(120,150,220,.2);box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.hero__plate--far img{filter:blur(1.1px)}
+@media(max-width:820px){.hero__plate{width:clamp(120px,26vw,190px)}}
+.hero__plate span{
+  position:absolute;left:0;bottom:-1.35rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+
+.hero__veil{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 58% 52% at 26% 68%,rgba(6,11,28,.94),transparent 74%),
+    linear-gradient(to bottom,rgba(6,11,28,.66) 0,rgba(6,11,28,.06) 30%,rgba(6,11,28,.62) 66%,var(--night) 97%),
+    linear-gradient(to right,rgba(6,11,28,.9) 0,rgba(6,11,28,0) 26%,rgba(6,11,28,0) 74%,rgba(6,11,28,.9) 100%)}
+
+.hero__copy{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:clamp(4.5rem,11vh,8rem);max-width:var(--maxw);margin:0 auto}
+.hero__eyebrow{color:var(--dim);margin-bottom:clamp(1rem,2.4vh,1.6rem);display:block;overflow-wrap:anywhere}
+.hero__eyebrow b{color:var(--lime);font-weight:400}
+.hero h1{max-width:15ch}
+.hero__sub{margin-top:clamp(1rem,2.4vh,1.5rem);max-width:52ch;color:#C3CDE6;font-size:var(--fs-lead);line-height:1.5}
+
+
+.hero__cue{position:absolute;z-index:3;left:calc(var(--gut) + var(--rail));bottom:1.6rem;display:flex;align-items:center;gap:.6rem}
+.hero__cue i{display:block;width:1px;height:26px;background:linear-gradient(var(--lime),transparent);animation:cue 2.4s var(--e) infinite}
+@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* entrada del hero: una sola secuencia orquestada */
+.js .hero__copy .hero__eyebrow,.js .hero__copy h1,.js .hero__copy .hero__sub,.js .hero__cue{
+  opacity:0;transform:translateY(26px)}
+.js .hero.is-on .hero__eyebrow{animation:rise var(--t-hero) var(--e) .15s forwards}
+.js .hero.is-on h1{animation:rise var(--t-hero) var(--e) .28s forwards}
+.js .hero.is-on .hero__sub{animation:rise var(--t-hero) var(--e) .46s forwards}
+.js .hero.is-on .hero__cue{animation:rise var(--t-hero) var(--e) .8s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ═══════════════════════ CIFRAS ═══════════════════════ */
+.facts{border-block:1px solid var(--line-soft);background:linear-gradient(180deg,rgba(12,21,51,.5),transparent)}
+.facts__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.fact{padding:clamp(1.6rem,3.4vw,2.6rem) clamp(1rem,2vw,2rem);border-left:1px solid var(--line-soft)}
+.fact:first-child{border-left:0}
+.fact b{display:block;font-size:clamp(2rem,4.4vw,3.4rem);font-weight:700;
+  font-variation-settings:"wdth" 108,"wght" 700;line-height:1;letter-spacing:-.03em}
+.fact b i{font-style:normal;color:var(--lime);font-size:.42em;vertical-align:.55em;margin-left:.12em}
+.fact > span{display:block;margin-top:.55rem;overflow-wrap:anywhere;font-family:'IBM Plex Mono',monospace;font-size:.6rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--dim);line-height:1.5}
+.fact b span{display:inline;font:inherit;color:inherit;letter-spacing:inherit;margin:0}
+.fact b em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.28em;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dim);vertical-align:.42em;margin:0 .3em 0 0}
+.fact b em + span + em{margin-left:.3em}
+@media(max-width:760px){.facts__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact:nth-child(3){border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line-soft)}}
+
+/* ═══════════════════════ NOSOTROS ═══════════════════════ */
+.about__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(1.6rem,4vw,4.5rem);margin-top:clamp(2.6rem,6vw,5rem);align-items:start}
+@media(max-width:960px){.about__grid{grid-template-columns:1fr}}
+.spec{list-style:none;margin:2rem 0 0;padding:0;border-top:1px solid var(--line-soft)}
+.spec li{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:1rem;
+  padding:.72rem 0;border-bottom:1px solid var(--line-soft)}
+.spec b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim);padding-top:.15rem}
+.spec span{color:#CBD4EA}
+.plate{position:relative;perspective:1000px}
+.about__grid .card{aspect-ratio:4/5}
+.about__grid .card img{height:100%}
+.card{position:relative;overflow:hidden;border-radius:3px;border:1px solid var(--line);
+  background:var(--panel);transform-style:preserve-3d;transition:transform var(--t-short) var(--e)}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card__tag{position:absolute;left:0;bottom:0;right:0;padding:.85rem 1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--bone);background:linear-gradient(to top,rgba(6,11,28,.92),transparent)}
+
+/* ═══════════════════════ SERVICIOS ═══════════════════════ */
+.srv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:clamp(2.6rem,6vw,4.5rem);
+  background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(max-width:860px){.srv{grid-template-columns:1fr}}
+.srv__cell{position:relative;background:var(--night);padding:clamp(1.6rem,3.4vw,2.8rem);
+  min-height:clamp(220px,26vw,300px);display:flex;flex-direction:column;gap:.85rem;
+  transition:background var(--t-short) var(--e)}
+.srv__cell:hover{background:var(--night-2)}
+.srv__cell::after{content:"";position:absolute;left:0;top:0;width:0;height:2px;background:var(--lime);
+  transition:width var(--t-long) var(--e)}
+.srv__cell:hover::after{width:100%}
+.srv__k{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lime)}
+.srv__cell h3{margin-top:.2rem;max-width:18ch}
+.srv__cell p{color:var(--muted);max-width:44ch}
+.srv__cell .mono{margin-top:auto;color:var(--dim);font-size:.6rem}
+
+/* ═══════════════════════ SECCIONES PINNEADAS ═══════════════════════ */
+.pin{position:relative}
+.pin__stage{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+
+/* — Almacén de Chiclayo — */
+.wh__bg{position:absolute;inset:0}
+.wh__bg img{width:100%;height:100%;object-fit:cover;opacity:.5;transform:scale(1.12);will-change:transform}
+.wh__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(6,11,28,.96) 0,rgba(6,11,28,.78) 45%,rgba(6,11,28,.66) 100%),
+             linear-gradient(to bottom,var(--night),transparent 22%,transparent 72%,var(--night))}
+.wh__in{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;
+  padding-inline:calc(var(--gut) + var(--rail)) var(--gut);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(1.5rem,4vw,4rem);align-items:center}
+@media(max-width:980px){.wh__in{grid-template-columns:1fr}
+  .wh__blue svg{display:none}
+  .wh__blue{background:none;border:0;padding:0;backdrop-filter:none}}
+.wh__in h2{max-width:14ch}
+.wh__modes{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;gap:.55rem}
+.wh__modes li{display:flex;gap:.85rem;align-items:baseline;padding:.7rem .95rem;border:1px solid var(--line-soft);
+  border-radius:2px;background:rgba(9,16,40,.78);backdrop-filter:blur(4px)}
+.wh__modes b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.6rem;letter-spacing:.16em;
+  color:var(--lime);flex:0 0 auto}
+.wh__modes span{color:#CBD4EA;font-size:.95rem}
+/* plano de la nave, se dibuja con el scroll */
+.wh__blue{position:relative}
+.wh__blue svg{width:100%;height:auto;overflow:visible}
+.wh__blue .bl-line{fill:none;stroke:var(--lime);stroke-width:1.4;
+  stroke-dasharray:var(--len);stroke-dashoffset:var(--len);opacity:.9}
+.wh__blue .bl-dim{fill:none;stroke:rgba(147,160,192,.55);stroke-width:1;
+  stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.wh__blue{padding:clamp(1rem,2vw,1.8rem);border:1px solid var(--line-soft);border-radius:3px;
+  background:rgba(6,11,28,.72);backdrop-filter:blur(6px)}
+.wh__blue text{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;fill:#AAB6D4;opacity:0;transition:opacity var(--t-short) var(--e)}
+.wh__blue text.is-on{opacity:1}
+.wh__blue text.t-amber{fill:var(--amber)}
+
+/* — Flota: recorrido en profundidad — */
+.fleet__stage{perspective:1300px;perspective-origin:50% 50%}
+.fleet__space{position:absolute;inset:0;transform-style:preserve-3d}
+.fleet__slab{position:absolute;left:50%;top:50%;width:min(34vw,450px);margin-left:min(-17vw,-225px);margin-top:-13vh;
+  transform-style:preserve-3d;will-change:transform,opacity}
+.fleet__slab .card{box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.fleet__slab img{aspect-ratio:16/10}
+.fleet__hud{position:absolute;left:calc(var(--gut) + var(--rail));bottom:clamp(3.5rem,10vh,6rem);z-index:4;max-width:30ch}
+.fleet__panel{position:absolute;left:calc(var(--gut) + var(--rail));top:clamp(4.5rem,11vh,7rem);z-index:4;
+  display:grid;gap:clamp(1.4rem,4.5vh,2.8rem);align-content:start}
+.fleet__idx{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;counter-reset:u}
+.fleet__idx li{display:flex;gap:.8rem;align-items:baseline;counter-increment:u;
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);transition:color var(--t-short) var(--e)}
+.fleet__idx li::before{content:counter(u,decimal-leading-zero);color:var(--line);
+  transition:color var(--t-short) var(--e)}
+.fleet__idx li.is-on{color:var(--bone)}
+.fleet__idx li.is-on::before{color:var(--lime)}
+@media(max-width:760px){.fleet__idx{display:none}}
+@media(max-width:760px){.fleet__hud{max-width:none;right:var(--gut)}}
+
+/* tabla de flota: estática a propósito */
+.tbl{width:100%;border-collapse:collapse;margin-top:clamp(2.2rem,5vw,3.5rem);font-size:.95rem}
+.tbl th{text-align:left;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.58rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--dim);padding:0 1rem .8rem 0;
+  border-bottom:1px solid var(--line)}
+.tbl td{padding:1rem 1rem 1rem 0;border-bottom:1px solid var(--line-soft);vertical-align:top;color:#CBD4EA}
+.tbl td:first-child{color:var(--bone);font-weight:600;font-variation-settings:"wdth" 104,"wght" 600}
+.tbl td.num{font-family:'IBM Plex Mono',monospace;color:var(--lime);white-space:nowrap}
+@media(max-width:720px){
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl tr{padding:1rem 0;border-bottom:1px solid var(--line-soft)}
+  .tbl td{border:0;padding:.15rem 0}
+  .tbl td:first-child{font-size:1.05rem;margin-bottom:.3rem}
+}
+
+/* ═══════════════════════ COBERTURA ═══════════════════════ */
+.map{position:relative;margin-top:clamp(2.4rem,5vw,4rem);max-width:940px}
+.map svg{width:100%;height:auto;overflow:visible}
+.map .rt{fill:none;stroke:url(#routeGrad);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.map .rt-ghost{fill:none;stroke:var(--line);stroke-width:1;stroke-dasharray:3 5}
+.map .node{fill:var(--night);stroke:var(--line);stroke-width:1.5;transition:all var(--t-short) var(--e)}
+.map .node.is-on{fill:var(--lime);stroke:var(--lime)}
+.map .city{font-family:'Archivo',sans-serif;font-size:14px;font-weight:600;
+  font-variation-settings:"wdth" 106,"wght" 600;fill:var(--bone);opacity:0;transition:opacity var(--t-short) var(--e)}
+.map .coord{font-family:'IBM Plex Mono',monospace;font-size:7.5px;letter-spacing:.12em;
+  fill:var(--dim);opacity:0;transition:opacity var(--t-short) var(--e)}
+.map .dist{font-family:'IBM Plex Mono',monospace;font-size:7.5px;letter-spacing:.1em;
+  fill:var(--dim);opacity:0;transition:opacity var(--t-short) var(--e)}
+.map .is-on{opacity:1}
+.map .halo{fill:none;stroke:var(--lime);stroke-width:1;opacity:0}
+.map .node.is-on + .halo{animation:halo 2.6s var(--e) infinite}
+@keyframes halo{0%{r:6;opacity:.5}100%{r:17;opacity:0}}
+
+/* ═══════════════════════ SECTORES ═══════════════════════ */
+.sect{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.8rem,1.6vw,1.4rem);
+  margin-top:clamp(2.6rem,6vw,4.5rem)}
+@media(max-width:860px){.sect{grid-template-columns:1fr}}
+.sect__cell{position:relative;overflow:hidden;border-radius:3px;border:1px solid var(--line-soft);
+  min-height:clamp(300px,34vw,440px);display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(1.3rem,2.4vw,2rem)}
+.sect__cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;
+  transition:transform var(--t-long) var(--e),opacity var(--t-long) var(--e)}
+.sect__cell:hover img{transform:scale(1.06);opacity:.55}
+.sect__cell::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(6,11,28,.95) 12%,rgba(6,11,28,.35) 58%,rgba(6,11,28,.6))}
+.sect__cell > *{position:relative;z-index:2}
+.sect__cell p{color:var(--muted);margin-top:.55rem;font-size:.94rem}
+.sect__cell .label{margin-bottom:.7rem;display:block}
+
+/* ═══════════════════════ TRAZABILIDAD ═══════════════════════ */
+.trace{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  gap:clamp(1.6rem,4vw,4rem);margin-top:clamp(2.6rem,6vw,4.5rem);align-items:start}
+@media(max-width:980px){.trace{grid-template-columns:1fr}}
+.stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.chip{background:#fff;border-radius:3px;padding:0;overflow:hidden;aspect-ratio:640/240;
+  display:flex;align-items:center;justify-content:center;
+  filter:saturate(.15) contrast(.92) brightness(.94);opacity:.72;
+  transition:filter var(--t-short) var(--e),opacity var(--t-short) var(--e),transform var(--t-short) var(--e)}
+.chip:hover{filter:none;opacity:1;transform:translateY(-2px)}
+.chip img{width:100%;height:100%;object-fit:contain;display:block}
+.chip--open{background:transparent;border:1px dashed var(--line);filter:none;opacity:1}
+.chip--open:hover{transform:none;border-color:var(--lime)}
+
+/* hoja de ruta reconstruida */
+.sheet{border:1px solid var(--line);border-radius:3px;background:var(--panel);overflow:hidden}
+.sheet__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sheet table{min-width:420px}
+.sheet__top{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;padding:.9rem 1.1rem;
+  border-bottom:1px solid var(--line);background:var(--panel-2)}
+.sheet__top span{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim)}
+.sheet__top span b{color:var(--bone);font-weight:400}
+.sheet table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:.66rem}
+.sheet th{text-align:left;padding:.6rem 1.1rem;color:var(--dim);font-weight:400;letter-spacing:.14em;
+  text-transform:uppercase;font-size:.55rem;border-bottom:1px solid var(--line)}
+.sheet td{padding:.5rem 1.1rem;color:#BFC9E2;border-bottom:1px solid var(--line-soft)}
+.sheet tr:last-child td{border-bottom:0}
+.sheet td.u{color:var(--bone)}
+.sheet td.n{color:var(--lime);text-align:right}
+.sheet__foot{display:flex;justify-content:space-between;padding:.75rem 1.1rem;
+  border-top:1px solid var(--line);background:var(--panel-2);
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.sheet__foot b{color:var(--lime);font-weight:400}
+.sheet__bar{height:3px;background:var(--line-soft)}
+.sheet__bar i{display:block;height:100%;width:0;background:var(--lime);transition:width 2.4s var(--e)}
+.sheet.is-on .sheet__bar i{width:73%}
+
+/* ═══════════════════════ CLIENTES ═══════════════════════ */
+.cli{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.7rem;margin-top:clamp(2.4rem,5vw,4rem)}
+@media(max-width:980px){.cli{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.cli{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ═══════════════════════ CONTACTO ═══════════════════════ */
+.end{border-top:1px solid var(--line);background:linear-gradient(180deg,var(--night),#040815)}
+.end__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+  gap:clamp(2rem,5vw,5rem);align-items:start}
+@media(max-width:900px){.end__grid{grid-template-columns:1fr}}
+.end h2{max-width:13ch}
+.form{display:grid;gap:.7rem}
+.form label{display:grid;gap:.35rem}
+.form span{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim)}
+.form input,.form textarea{
+  font-family:inherit;font-size:.98rem;color:var(--bone);background:var(--panel);
+  border:1px solid var(--line);border-radius:2px;padding:.75rem .85rem;width:100%;
+  transition:border-color var(--t-micro) var(--e)}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--lime)}
+.form textarea{min-height:110px;resize:vertical}
+.form__row{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.4rem}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.8rem 1.4rem;border-radius:2px;border:1px solid var(--lime);background:var(--lime);color:#0B1224;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:background var(--t-micro) var(--e),border-color var(--t-micro) var(--e),color var(--t-micro) var(--e)}
+.btn:hover{background:var(--lime-hi);border-color:var(--lime-hi)}
+.btn--ghost{background:transparent;color:var(--bone);border-color:var(--line)}
+.btn--ghost:hover{background:rgba(168,204,85,.08);border-color:var(--lime);color:var(--bone)}
+.form__note{font-size:.85rem;color:var(--dim);min-height:1.2em}
+.form__note.is-ok{color:var(--lime)}
+.form__note.is-warn{color:var(--amber)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.foot{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;
+  padding-block:1.6rem;margin-top:clamp(3rem,7vw,5.5rem);border-top:1px solid var(--line-soft)}
+.foot p{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim)}
+
+/* ═══════════ Pantallas de poca altura: compactar los bloques anclados ═══════════ */
+@media(min-width:761px) and (max-height:800px){
+  .wh__in h2{font-size:clamp(1.5rem,3vw,2.4rem)}
+  .wh__in .lead{font-size:1rem;margin-top:.9rem}
+  .wh__modes{margin-top:1.1rem;gap:.42rem}
+  .wh__modes li{padding:.55rem .85rem}
+  .wh__modes span{font-size:.9rem}
+  .wh__blue{padding:1rem}
+  .wh__blue .spec li{padding:.48rem 0}
+}
+
+/* ═══════════ En móvil los recorridos pinneados pasan a flujo ═══════════ */
+@media(max-width:760px){
+  .pin{height:auto !important}
+  .pin__stage{position:relative;height:auto;display:flex;flex-direction:column;
+    padding-block:clamp(3.5rem,10vw,5rem)}
+  .fleet__panel{order:-2}.fleet__hud{order:-1}.fleet__space{order:0}
+  .wh__bg{position:absolute;inset:0}
+  .wh__in{padding-block:0}
+  .fleet__panel,.fleet__hud{position:relative;left:auto;top:auto;bottom:auto;
+    padding-inline:calc(var(--gut) + var(--rail)) var(--gut);max-width:none}
+  .fleet__idx{display:none}
+  .fleet__hud{margin-top:1.4rem}
+  .fleet__space{position:relative;inset:auto;display:grid;gap:.7rem;
+    margin:1.8rem 0 0;padding-inline:calc(var(--gut) + var(--rail)) var(--gut);transform-style:flat}
+  .fleet__slab{position:relative;left:auto;top:auto;width:100%;margin:0;
+    transform:none !important;opacity:1 !important}
+  .fleet__stage{perspective:none}
+}
+
+/* ═══════════════════════ REVEALS ═══════════════════════ */
+.js [data-rv]{opacity:0;transform:translateY(24px)}
+.js [data-rv].is-in{opacity:1;transform:none;
+  transition:opacity var(--t-long) var(--e) calc(var(--i,0)*.08s),transform var(--t-long) var(--e) calc(var(--i,0)*.08s)}
+
+/* ═══════════════════════ MOVIMIENTO REDUCIDO ═══════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .js [data-rv]{opacity:1 !important;transform:none !important}
+  .js .hero__copy .hero__eyebrow,.js .hero__copy h1,.js .hero__copy .hero__sub,.js .hero__cue{opacity:1;transform:none}
+  .floor__rush,.floor__flow{animation:none}
+  .wh__blue .bl-line,.wh__blue .bl-dim{stroke-dashoffset:0}
+  .map .rt{stroke-dashoffset:0}
+}
+</style>
+
+<script>document.documentElement.className+=" js";</script>
+
+<!-- ═══════════ Riel de ruta ═══════════ -->
+<div class="route" id="route" aria-hidden="true">
+  <div class="route__fill" id="routeFill"></div>
+  <div class="route__dot" id="routeDot"></div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="nav__mark"><img src="img/cr-mark.webp" alt="" width="26" height="26"> CR&nbsp;Transport</div>
+  <ul class="nav__links">
+    <li><a href="#empresa">Empresa</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#almacen">Almacén Chiclayo</a></li>
+    <li><a href="#flota">Flota</a></li>
+    <li><a href="#cobertura">Cobertura</a></li>
+    <li><a href="#trazabilidad">Trazabilidad</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+  </ul>
+  <a class="nav__cta" href="#contacto">Cotizar</a>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<header class="hero" id="hero">
+  <div class="hero__scene" aria-hidden="true">
+    <div class="hero__horizon"></div>
+    <div class="hero__world" id="heroWorld">
+      <div class="floor">
+        <div class="floor__lanes"></div>
+        <div class="floor__flow"></div>
+        <div class="floor__rush"></div>
+      </div>
+      <div class="hero__plate" data-x="20" data-y="-33" data-z="-190" data-r="-7">
+        <img src="img/rig-lowboy.webp" alt="" width="1192" height="800" decoding="async" fetchpriority="high">
+        <span>Cama baja · carga ancha</span>
+      </div>
+      <div class="hero__plate hero__plate--far" data-x="41" data-y="-16" data-z="-470" data-r="-5">
+        <img src="img/truck-green.webp" alt="" width="1096" height="708" decoding="async">
+        <span>Furgón · reparto</span>
+      </div>
+      <div class="hero__plate" data-x="26" data-y="1" data-z="-560" data-r="-9">
+        <img src="img/rig-flatbed.webp" alt="" width="1136" height="682" decoding="async" fetchpriority="high">
+        <span>Plataforma · material de obra</span>
+      </div>
+      <div class="hero__plate hero__plate--far" data-x="46" data-y="12" data-z="-300" data-r="-6">
+        <img src="img/truck-blue.webp" alt="" width="1070" height="690" decoding="async">
+        <span>Furgón · abastecimiento</span>
+      </div>
+      </div>
+    <div class="hero__veil"></div>
+  </div>
+
+    <div class="hero__copy">
+    <span class="mono hero__eyebrow">CR Transport <b>·</b> CR Proveedores Industriales Selva SAC <b>·</b> RUC 20602143679</span>
+    <h1 style="max-width:13ch">Su carga, siempre en el mapa</h1>
+    <p class="hero__sub">Transporte de carga terrestre con flota y personal propios. Nueve años moviendo carga pesada, abastecimiento a tiendas y última milla en la costa peruana — y desde Tarapoto, hacia el nororiente. Cada unidad, monitoreada por GPS durante todo el trayecto.</p>
+  </div>
+  <div class="hero__cue"><i></i><span class="mono label--mute">Recorrer</span></div>
+</header>
+
+<!-- ═══════════════════════ CIFRAS ═══════════════════════ -->
+<section class="facts" aria-label="Cifras de operación">
+  <div class="facts__grid">
+    <div class="fact"><b><span data-count="9">0</span><i>+</i></b><span>Años de operación</span></div>
+    <div class="fact"><b><span data-count="5">0</span></b><span>Ciudades con operación propia</span></div>
+    <div class="fact"><b><em>de</em><span data-count="1.5">0</span><em>a</em><span data-count="26">0</span></b><span>Toneladas por unidad</span></div>
+    <div class="fact"><b><span data-count="4">0</span></b><span>Sistemas de trazabilidad en uso</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ EMPRESA ═══════════════════════ -->
+<section class="sec" id="empresa" data-stop="Empresa">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Empresa</b> · Capital peruano · Desde 2016</span>
+        <h2 data-rv style="max-width:15ch">Una operación que se puede <span class="hl">seguir en pantalla</span></h2>
+      </div>
+      <p class="body" data-rv style="--i:1">CR Transport es la unidad de transporte de carga de CR Proveedores Industriales Selva SAC. Nueve años moviendo carga en la costa peruana y, desde la apertura de la filial en Tarapoto, también hacia el nororiente. Flota propia, personal en planilla y seguimiento GPS de cada unidad mientras la ruta ocurre.</p>
+    </div>
+
+    <div class="about__grid">
+      <div>
+        <p class="lead" data-rv>No subcontratamos la parte que importa: la unidad, el conductor y el reporte son nuestros.</p>
+        <p class="body" data-rv style="--i:1">Trabajamos para operaciones que no toleran sorpresas — reposición a tienda con ventana horaria, traslado de material de obra, despacho agroindustrial. Por eso el equipo está entrenado en cuatro plataformas de trazabilidad distintas: cada cliente sigue su carga en el sistema con el que ya trabaja, y recibe además nuestro propio reporte por corte de horario.</p>
+        <ul class="spec" data-rv style="--i:2">
+          <li><b>Razón social</b><span>CR Proveedores Industriales Selva SAC</span></li>
+          <li><b>RUC</b><span>20602143679</span></li>
+          <li><b>Base de despacho</b><span>Lima</span></li>
+          <li><b>Base norte</b><span>Chiclayo — almacén propio</span></li>
+          <li><b>Filial</b><span>Tarapoto — nororiente</span></li>
+          <li><b>Sectores</b><span>Retail · Agroindustria · Minería · Industria</span></li>
+        </ul>
+      </div>
+      <div class="plate" data-rv style="--i:1">
+        <div class="card" data-tilt>
+          <img src="img/unit-front.webp" alt="Unidad furgón de CR Transport rotulada, lista para salida" width="1440" height="2238" loading="lazy" decoding="async">
+          <span class="card__tag">Flota propia · rotulada y monitoreada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SERVICIOS ═══════════════════════ -->
+<section class="sec" id="servicios" data-stop="Servicios">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Servicios</b> · Cuatro frentes</span>
+        <h2 data-rv style="max-width:13ch">Lo que movemos y cómo lo movemos</h2>
+      </div>
+      <p class="body" data-rv style="--i:1">Cada frente tiene su propio tipo de unidad, su propio control y su propia forma de reportar. Se contratan por separado o como una sola operación de punta a punta.</p>
+    </div>
+
+    <div class="srv">
+      <article class="srv__cell" data-rv>
+        <span class="srv__k">Carga pesada</span>
+        <h3>Traslado de materiales</h3>
+        <p>Estructura, maquinaria y material de obra en semitrailer, cama baja y plataforma. Aseguramiento de estiba, permisos de carga ancha y acompañamiento durante toda la ruta.</p>
+        <span class="mono">Semitrailer · Cama baja · Plataforma</span>
+      </article>
+      <article class="srv__cell" data-rv style="--i:1">
+        <span class="srv__k">Última milla</span>
+        <h3>Reparto hasta el destinatario</h3>
+        <p>Reparto capilar en Lima y provincia con programación por distrito, confirmación punto por punto y cierre del día con guías de vuelta.</p>
+        <span class="mono">Furgoneta · Van · Furgón liviano</span>
+      </article>
+      <article class="srv__cell" data-rv style="--i:2">
+        <span class="srv__k">Retail</span>
+        <h3>Abastecimiento a tiendas</h3>
+        <p>Reposición con ventana horaria: salida de base a primera hora, ruta cerrada por zona y semáforo de avance visible durante el día para el equipo del cliente.</p>
+        <span class="mono">Ruta programada · Ventana horaria</span>
+      </article>
+      <article class="srv__cell" data-rv style="--i:3">
+        <span class="srv__k">Chiclayo</span>
+        <h3>Almacenamiento y distribución</h3>
+        <p>Nave propia en Chiclayo para recibir, guardar y despachar desde el norte. Se toma como servicio de almacenaje, como espacio para su operación, o como las dos cosas.</p>
+        <span class="mono">Almacenaje · Cross-docking · Despacho</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ALMACÉN CHICLAYO (pin) ═══════════════════════ -->
+<section class="pin" id="almacen" data-pin data-stop="Almacén" style="height:280vh">
+  <div class="pin__stage">
+    <div class="wh__bg" aria-hidden="true">
+      <img id="whImg" src="img/warehouse-empty.webp" alt="" width="1690" height="1160" loading="lazy" decoding="async">
+    </div>
+    <div class="wh__in">
+      <div>
+        <span class="sec-tag"><i></i><b>Almacén</b> · Chiclayo · 06°46′S 79°50′O</span>
+        <h2 data-rv style="max-width:14ch">Un espacio en el norte para <span class="hl">montar su operación</span></h2>
+        <p class="lead" data-rv style="--i:1;margin-top:1.3rem">Nave propia en Chiclayo, con la flota al lado y la ruta ya armada hacia Piura, Trujillo, Lima y Tarapoto.</p>
+        <ul class="wh__modes">
+          <li data-rv style="--i:2"><b>01</b><span><b style="color:var(--bone);font-family:inherit;font-size:1em;letter-spacing:0">Almacenaje con distribución.</b> Usted manda la mercadería, nosotros la recibimos, la guardamos y la despachamos.</span></li>
+          <li data-rv style="--i:3"><b>02</b><span><b style="color:var(--bone);font-family:inherit;font-size:1em;letter-spacing:0">Espacio en alquiler.</b> Toma el área que necesita y opera con su propio equipo y sus propios sistemas.</span></li>
+          <li data-rv style="--i:4"><b>03</b><span><b style="color:var(--bone);font-family:inherit;font-size:1em;letter-spacing:0">Operación llave en mano.</b> Espacio, personal, unidades y reporte diario bajo un solo contrato.</span></li>
+        </ul>
+      </div>
+
+      <!-- Plano de la nave: se dibuja conforme baja el scroll -->
+      <div class="wh__blue" aria-hidden="true">
+        <svg viewBox="-4 14 404 244" role="img">
+          <!-- patio de maniobra -->
+          <path class="bl-dim" d="M14 62 L46 62 L46 196 L14 196"></path>
+          <text class="t-dim" x="16" y="212">Patio de maniobra</text>
+          <!-- perímetro de la nave -->
+          <path class="bl-line" d="M52 62 L318 62 L318 196 L52 196 Z"></path>
+          <!-- portón -->
+          <path class="bl-line" d="M52 104 L52 154"></path>
+          <path class="bl-dim" d="M52 104 L78 118 M52 154 L78 140"></path>
+          <!-- racks sugeridos -->
+          <path class="bl-dim" d="M96 78 L96 180 M138 78 L138 180 M180 78 L180 180 M222 78 L222 180 M264 78 L264 180"></path>
+          <!-- cota superior -->
+          <path class="bl-dim" d="M52 42 L318 42 M52 36 L52 48 M318 36 L318 48"></path>
+          <text x="150" y="32" class="t-amber">Largo · por confirmar</text>
+          <!-- cota lateral -->
+          <path class="bl-dim" d="M336 62 L336 196 M330 62 L342 62 M330 196 L342 196"></path>
+          <text x="352" y="132" class="t-amber" transform="rotate(90 352 132)">Ancho · por confirmar</text>
+          <!-- altura libre -->
+          <path class="bl-dim" d="M70 196 L70 232 M64 232 L76 232"></path>
+          <text x="82" y="236" class="t-amber">Altura libre · por confirmar</text>
+          <text x="52" y="56">Nave techada</text>
+        </svg>
+        <ul class="spec" style="margin-top:1.2rem">
+          <li><b>Área techada</b><span class="tbc" title="Falta el dato">m² por confirmar</span></li>
+          <li><b>Altura libre</b><span class="tbc" title="Falta el dato">m por confirmar</span></li>
+          <li><b>Accesos</b><span class="tbc" title="Falta el dato">n.º de portones por confirmar</span></li>
+          <li><b>Dirección</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FLOTA (pin) ═══════════════════════ -->
+<section class="pin" id="flota" data-pin data-stop="Flota" style="height:320vh">
+  <div class="pin__stage fleet__stage">
+    <div class="fleet__space" id="fleetSpace" aria-hidden="true">
+      <div class="fleet__slab"><div class="card"><img src="img/truck-green.webp" alt="" width="1096" height="708" loading="lazy" decoding="async"><span class="card__tag">Furgón · reparto urbano</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/truck-blue.webp" alt="" width="1070" height="690" loading="lazy" decoding="async"><span class="card__tag">Furgón · abastecimiento a tiendas</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/rig-flatbed.webp" alt="" width="1136" height="682" loading="lazy" decoding="async"><span class="card__tag">Plataforma · material de obra</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/rig-lowboy.webp" alt="" width="1192" height="800" loading="lazy" decoding="async"><span class="card__tag">Cama baja · carga ancha</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/team-fleet.webp" alt="" width="1432" height="712" loading="lazy" decoding="async"><span class="card__tag">Salida de base · flota liviana</span></div></div>
+    </div>
+    <div class="fleet__panel">
+    <div class="fleet__head">
+      <span class="sec-tag"><i></i><b>Flota</b> · Propia · 1.5 t → 26 t</span>
+      <h2 style="max-width:11ch;font-size:clamp(1.6rem,3.2vw,2.7rem)">La unidad correcta para cada carga</h2>
+    </div>
+    <ol class="fleet__idx" id="fleetIdx" aria-hidden="true">
+      <li>Furgón · reparto urbano</li>
+      <li>Furgón · abastecimiento</li>
+      <li>Plataforma · material de obra</li>
+      <li>Cama baja · carga ancha</li>
+      <li>Salida de base · flota liviana</li>
+    </ol>
+    </div>
+    <div class="fleet__hud">
+      <p class="body">Flota propia de distintas capacidades, monitoreada por GPS y con personal de soporte asignado para responder ante cualquier inconveniente en ruta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <table class="tbl">
+      <thead><tr><th>Tipo de unidad</th><th>Capacidad</th><th>Para qué se usa</th><th>Unidades</th></tr></thead>
+      <tbody>
+        <tr><td>Furgonetas y vans</td><td class="num">desde 1.5 t</td><td>Última milla, reparto por distrito, entregas a domicilio</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
+        <tr><td>Camiones furgón</td><td class="num">carga seca</td><td>Abastecimiento a tiendas y rutas interprovinciales</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
+        <tr><td>Semitrailers y plataformas</td><td class="num">hasta 26 t</td><td>Traslado de materiales, carga pesada y sobredimensionada</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════ COBERTURA ═══════════════════════ -->
+<section class="sec" id="cobertura" data-stop="Cobertura" style="padding-top:clamp(2rem,5vw,4rem)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Cobertura</b> · Cinco ciudades</span>
+        <h2 data-rv style="max-width:13ch">Operación propia en el corredor norte</h2>
+      </div>
+      <p class="body" data-rv style="--i:1">Lima como base de despacho, Chiclayo como centro de operaciones del norte y Tarapoto como puerta al nororiente. No es una red de terceros: en cada una de estas ciudades operamos con unidad y personal propios.</p>
+    </div>
+
+    <div class="map" data-rv>
+      <svg viewBox="0 0 640 420" role="img" aria-label="Esquema de cobertura: Piura, Chiclayo, Tarapoto, Trujillo y Lima">
+        <defs>
+          <linearGradient id="routeGrad" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#16215E"></stop>
+            <stop offset="55%" stop-color="#A8CC55"></stop>
+            <stop offset="100%" stop-color="#C9E884"></stop>
+          </linearGradient>
+        </defs>
+        <!-- guía tenue -->
+        <path class="rt-ghost" d="M437 372 C 360 320 290 240 237 176 C 205 150 180 130 156 108 C 130 84 100 52 77 30"></path>
+        <path class="rt-ghost" d="M156 108 C 250 74 380 62 503 95"></path>
+        <!-- rutas que se dibujan -->
+        <path class="rt" id="rtMain" d="M437 372 C 360 320 290 240 237 176 C 205 150 180 130 156 108 C 130 84 100 52 77 30"></path>
+        <path class="rt" id="rtBranch" d="M156 108 C 250 74 380 62 503 95"></path>
+
+        <!-- distancias aproximadas por carretera -->
+        <text class="dist" x="352" y="290">≈ 560 km</text>
+        <text class="dist" x="140" y="156">≈ 205 km</text>
+        <text class="dist" x="52" y="86">≈ 210 km</text>
+        <text class="dist" x="300" y="62">≈ 600 km</text>
+
+        <!-- nodos -->
+        <g data-city>
+          <circle class="node" cx="77" cy="30" r="5"></circle><circle class="halo" cx="77" cy="30" r="6"></circle>
+          <text class="city" x="90" y="27">Piura</text>
+          <text class="coord" x="90" y="41">05°12′S 80°38′O</text>
+        </g>
+        <g data-city>
+          <circle class="node" cx="156" cy="108" r="6.5"></circle><circle class="halo" cx="156" cy="108" r="6"></circle>
+          <text class="city" x="170" y="122">Chiclayo</text>
+          <text class="coord" x="170" y="136">06°46′S 79°50′O · Almacén propio</text>
+        </g>
+        <g data-city>
+          <circle class="node" cx="503" cy="95" r="5"></circle><circle class="halo" cx="503" cy="95" r="6"></circle>
+          <text class="city" x="516" y="92">Tarapoto</text>
+          <text class="coord" x="516" y="106">06°29′S 76°22′O · Filial</text>
+        </g>
+        <g data-city>
+          <circle class="node" cx="237" cy="176" r="5"></circle><circle class="halo" cx="237" cy="176" r="6"></circle>
+          <text class="city" x="250" y="173">Trujillo</text>
+          <text class="coord" x="250" y="187">08°06′S 79°02′O</text>
+        </g>
+        <g data-city>
+          <circle class="node" cx="437" cy="372" r="6.5"></circle><circle class="halo" cx="437" cy="372" r="6"></circle>
+          <text class="city" x="451" y="369">Lima</text>
+          <text class="coord" x="451" y="383">12°03′S 77°02′O · Base de despacho</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTORES ═══════════════════════ -->
+<section class="sec" id="sectores" data-stop="Sectores" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Sectores</b> · Tres frentes con reglas distintas</span>
+        <h2 data-rv style="max-width:13ch">Cada carga tiene su propia disciplina</h2>
+      </div>
+      <p class="body" data-rv style="--i:1">Una tienda no se abastece como se traslada una estructura, y una campaña agrícola no espera. El tipo de unidad, el control y el reporte cambian según el sector.</p>
+    </div>
+
+    <div class="sect">
+      <article class="sect__cell" data-rv>
+        <img src="img/rig-lowboy.webp" alt="Cama baja para carga ancha en ruta" width="1192" height="800" loading="lazy" decoding="async">
+        <span class="label">Minería e industria</span>
+        <h3>Carga ancha y sobredimensionada</h3>
+        <p>Estructura y maquinaria en cama baja y plataforma, con permisos y acompañamiento en ruta.</p>
+      </article>
+      <article class="sect__cell" data-rv style="--i:1">
+        <img src="img/rig-flatbed.webp" alt="Plataforma cargada con material en ruta" width="1136" height="682" loading="lazy" decoding="async">
+        <span class="label">Agroindustria</span>
+        <h3>Campaña que no espera</h3>
+        <p>Movimiento de insumo y producto en ventana de campaña, con unidades asignadas por temporada.</p>
+      </article>
+      <article class="sect__cell" data-rv style="--i:2">
+        <img src="img/warehouse-stock.webp" alt="Almacén con mercadería paletizada lista para despacho" width="1722" height="830" loading="lazy" decoding="async">
+        <span class="label">Retail</span>
+        <h3>Reposición con ventana horaria</h3>
+        <p>Ruta cerrada por zona, salida a primera hora y confirmación de entrega tienda por tienda.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TRAZABILIDAD ═══════════════════════ -->
+<section class="sec" id="trazabilidad" data-stop="Trazabilidad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Trazabilidad</b> · Cuatro plataformas · Reporte propio</span>
+        <h2 data-rv style="max-width:15ch">Su carga se sigue en el sistema que <span class="hl">usted ya usa</span></h2>
+      </div>
+      <p class="body" data-rv style="--i:1">El equipo está entrenado en cuatro plataformas de trazabilidad distintas. Eso permite coordinar con el sistema que el cliente ya tiene montado, en lugar de obligarlo a mirar el nuestro. Encima de eso entregamos un reporte propio de los servicios realizados, por corte de horario.</p>
+    </div>
+
+    <div class="trace">
+      <div>
+        <div class="stack" data-rv>
+          <div class="chip"><img src="img/trk-beetrack.webp" alt="Beetrack" width="640" height="240" loading="lazy" decoding="async"></div>
+          <div class="chip"><img src="img/trk-wisetrack.webp" alt="Wisetrack Perú" width="640" height="240" loading="lazy" decoding="async"></div>
+          <div class="chip"><img src="img/trk-unigis.webp" alt="Unigis" width="640" height="240" loading="lazy" decoding="async"></div>
+          <div class="chip"><img src="img/trk-simpliroute.webp" alt="SimpliRoute" width="640" height="240" loading="lazy" decoding="async"></div>
+        </div>
+        <ul class="spec" data-rv style="--i:1">
+          <li><b>En ruta</b><span>Posición GPS de la unidad en tiempo real</span></li>
+          <li><b>Por punto</b><span>Estado de entrega y semáforo de avance</span></li>
+          <li><b>Por corte</b><span>Reporte de servicios realizados según horario acordado</span></li>
+          <li><b>Al cierre</b><span>Guía firmada de vuelta</span></li>
+        </ul>
+      </div>
+
+      <div class="sheet" id="sheet" data-rv style="--i:1">
+        <div class="sheet__top">
+          <span>Programación de ruta <b>· ejemplo</b></span>
+          <span>Hora en base <b>07:00</b></span>
+          <span>Unidades <b>4</b></span>
+        </div>
+        <div class="sheet__scroll"><table>
+          <thead><tr><th>Unidad</th><th>Zona</th><th style="text-align:right">Puntos</th></tr></thead>
+          <tbody>
+            <tr><td class="u">Unidad 1</td><td>Ate · Chaclacayo · Cieneguilla · La Molina · SJL</td><td class="n">12</td></tr>
+            <tr><td class="u">Unidad 2</td><td>San Bartolo · Miraflores · Surco · Surquillo</td><td class="n">8</td></tr>
+            <tr><td class="u">Unidad 3</td><td>Carabayllo · Comas · Rímac · San Martín de Porres</td><td class="n">7</td></tr>
+            <tr><td class="u">Unidad 4</td><td>Breña · La Victoria · Magdalena · San Borja · San Isidro</td><td class="n">10</td></tr>
+          </tbody>
+        </table></div>
+        <div class="sheet__bar"><i></i></div>
+        <div class="sheet__foot"><span>Avance del día</span><span><b>27 de 37 puntos</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ EQUIPO ═══════════════════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Equipo</b> · Personal propio</span>
+        <h2 data-rv style="max-width:15ch">Conductores, auxiliares y supervisión de flota</h2>
+      </div>
+      <p class="body" data-rv style="--i:1">Conductores, auxiliares, supervisores de flota, coordinadores de operación y personal administrativo. La charla de seguridad de las 6:30 y el control de salida son parte del servicio, no un extra.</p>
+    </div>
+    <div class="sect" style="margin-top:clamp(2rem,4vw,3rem)">
+      <article class="sect__cell" data-rv style="min-height:clamp(240px,26vw,340px)">
+        <img src="img/team-crew.webp" alt="Equipo de operación en almacén antes del turno" width="1432" height="712" loading="lazy" decoding="async">
+        <span class="label">Operación</span><h3>Cuadrilla de carga y descarga</h3>
+      </article>
+      <article class="sect__cell" data-rv style="--i:1;min-height:clamp(240px,26vw,340px)">
+        <img src="img/team-brief.webp" alt="Charla de seguridad antes de salir a ruta" width="1360" height="770" loading="lazy" decoding="async">
+        <span class="label">Seguridad</span><h3>Charla previa a la salida</h3>
+      </article>
+      <article class="sect__cell" data-rv style="--i:2;min-height:clamp(240px,26vw,340px)">
+        <img src="img/team-fleet.webp" alt="Conductores junto a la flota liviana en base" width="1432" height="712" loading="lazy" decoding="async">
+        <span class="label">Flota</span><h3>Conductores asignados por ruta</h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CLIENTES ═══════════════════════ -->
+<section class="sec" id="clientes" data-stop="Clientes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag"><i></i><b>Clientes</b> · Retail · Agroindustria · Industria</span>
+        <h2 data-rv style="max-width:13ch">Quiénes ya mueven su carga con nosotros</h2>
+      </div>
+      <p class="body" data-rv style="--i:1">Operaciones de retail nacional, agroexportación y suministro industrial. La referencia más útil que podemos dar es la lista de quienes vuelven a programar ruta cada semana.</p>
+    </div>
+    <div class="cli">
+      <div class="chip" data-rv><img src="img/cli-ripley.webp" alt="Ripley" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:1"><img src="img/cli-falabella.webp" alt="Saga Falabella" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:2"><img src="img/cli-efe.webp" alt="Efe" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:3"><img src="img/cli-curacao.webp" alt="La Curacao" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:4"><img src="img/cli-schneider.webp" alt="Schneider Electric" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:5"><img src="img/cli-calcem.webp" alt="Calcem" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:6"><img src="img/cli-norsur.webp" alt="Agrícola Norsur" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:7"><img src="img/cli-santazul.webp" alt="Agrícola Santa Azul" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip" data-rv style="--i:8"><img src="img/cli-premium.webp" alt="Premium Brands" width="640" height="240" loading="lazy" decoding="async"></div>
+      <div class="chip chip--open" data-rv style="--i:9">
+        <span class="mono" style="color:var(--dim);padding:1.4rem;display:block;text-align:center;line-height:1.7">Su<br>operación<br>aquí</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CONTACTO ═══════════════════════ -->
+<section class="sec end" id="contacto" data-stop="Contacto">
+  <div class="wrap">
+    <div class="end__grid">
+      <div>
+        <span class="sec-tag"><i></i><b>Contacto</b> · Cotización</span>
+        <h2 data-rv style="max-width:12ch">Cuéntenos qué necesita mover</h2>
+        <p class="body" data-rv style="--i:1;margin-top:1.4rem">Indíquenos origen, destino, tipo de carga y frecuencia, y le respondemos con una propuesta. Si lo que busca es espacio de almacén en Chiclayo, dígalo también — se cotiza aparte.</p>
+        <ul class="spec" data-rv style="--i:2">
+          <li><b>Razón social</b><span>CR Proveedores Industriales Selva SAC</span></li>
+          <li><b>RUC</b><span>20602143679</span></li>
+          <li><b>Teléfono</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
+          <li><b>Correo</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
+          <li><b>Dirección</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
+        </ul>
+      </div>
+
+      <form class="form" id="askForm" novalidate data-rv style="--i:1">
+        <label><span>Nombre y empresa</span><input type="text" name="nombre" autocomplete="organization"></label>
+        <label><span>Teléfono o correo</span><input type="text" name="contacto" autocomplete="tel"></label>
+        <label><span>Qué necesita mover</span><textarea name="mensaje" placeholder="Origen, destino, tipo de carga, peso aproximado y frecuencia."></textarea></label>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form__row">
+          <button class="btn" type="submit" id="askSend">Enviar consulta</button>
+          <a class="btn btn--ghost" id="askWa" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+        <p class="form__note" id="askNote" role="status"></p>
+      </form>
+    </div>
+
+    <div class="foot">
+      <p>CR Transport · CR Proveedores Industriales Selva SAC</p>
+      <p>Lima · Chiclayo · Trujillo · Piura · Tarapoto</p>
+      <p>RUC 20602143679</p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   Motor de la página. Sin librerías.
+   Una sola curva de easing (--e), cuatro duraciones, un solo bucle rAF
+   para todo lo que va atado al scroll.
+   ════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+
+  var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+  var vh = window.innerHeight, vw = window.innerWidth;
+  var T0 = performance.now();
+
+  /* ─────────── Reveals: una sola vez, sin re-animar al subir ─────────── */
+  var io = null;
+  if ("IntersectionObserver" in window){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-in");
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: "0px 0px -80px 0px" });
+    document.querySelectorAll("[data-rv]").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll("[data-rv]").forEach(function(el){ el.classList.add("is-in"); });
+  }
+
+  /* ─────────── Hero: la única secuencia orquestada de la página ─────────── */
+  var hero = document.getElementById("hero");
+  requestAnimationFrame(function(){ hero.classList.add("is-on"); });
+
+  /* ─────────── Contadores ─────────── */
+  function runCount(el){
+    var target = parseFloat(el.dataset.count);
+    var dec = (el.dataset.count.indexOf(".") > -1) ? 1 : 0;
+    if (REDUCED){ el.textContent = target.toFixed(dec); return; }
+    var t0 = null, dur = 1100;
+    function step(t){
+      if (t0 === null) t0 = t;
+      var p = clamp((t - t0) / dur, 0, 1);
+      var eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = (target * eased).toFixed(dec);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll("[data-count]");
+  if (io){
+    var ioCount = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        runCount(en.target); ioCount.unobserve(en.target);
+      });
+    }, { rootMargin: "0px 0px -60px 0px" });
+    counters.forEach(function(el){ ioCount.observe(el); });
+  } else {
+    counters.forEach(runCount);
+  }
+
+  /* ─────────── Mapa de cobertura: se dibuja al entrar en vista ─────────── */
+  var mapSvg = document.querySelector(".map svg");
+  if (mapSvg){
+    var routes = mapSvg.querySelectorAll(".rt");
+    routes.forEach(function(p){
+      var len = p.getTotalLength();
+      p.style.setProperty("--len", len);
+      p.style.transition = "stroke-dashoffset 2.2s var(--e)";
+    });
+    var drawMap = function(){
+      routes.forEach(function(p,i){
+        p.style.transitionDelay = (i * 0.5) + "s";
+        p.style.strokeDashoffset = "0";
+      });
+      var groups = mapSvg.querySelectorAll("[data-city]");
+      groups.forEach(function(g,i){
+        setTimeout(function(){
+          g.querySelector(".node").classList.add("is-on");
+          g.querySelectorAll(".city,.coord").forEach(function(t){ t.classList.add("is-on"); });
+        }, REDUCED ? 0 : 500 + i * 260);
+      });
+      mapSvg.querySelectorAll(".dist").forEach(function(t,i){
+        setTimeout(function(){ t.classList.add("is-on"); }, REDUCED ? 0 : 900 + i * 200);
+      });
+    };
+    if (io){
+      var ioMap = new IntersectionObserver(function(en){
+        if (!en[0].isIntersecting) return;
+        drawMap(); ioMap.disconnect();
+      }, { rootMargin: "0px 0px -120px 0px" });
+      ioMap.observe(mapSvg);
+    } else { drawMap(); }
+  }
+
+  /* ─────────── Hoja de ruta: barra de avance ─────────── */
+  var sheet = document.getElementById("sheet");
+  if (sheet && io){
+    var ioSheet = new IntersectionObserver(function(en){
+      if (!en[0].isIntersecting) return;
+      sheet.classList.add("is-on"); ioSheet.disconnect();
+    }, { rootMargin: "0px 0px -100px 0px" });
+    ioSheet.observe(sheet);
+  } else if (sheet){ sheet.classList.add("is-on"); }
+
+  /* ─────────── Riel de ruta: hitos = secciones ─────────── */
+  var route = document.getElementById("route");
+  var routeFill = document.getElementById("routeFill");
+  var routeDot = document.getElementById("routeDot");
+  var stops = [];
+  document.querySelectorAll("[data-stop]").forEach(function(sec){
+    var el = document.createElement("div");
+    el.className = "route__stop";
+    el.innerHTML = "<span>" + sec.dataset.stop + "</span>";
+    route.appendChild(el);
+    stops.push({ el: el, sec: sec });
+  });
+
+  /* ─────────── Nav ─────────── */
+  var nav = document.getElementById("nav");
+
+  /* ─────────── Escena del hero ─────────── */
+  var heroWorld = document.getElementById("heroWorld");
+  var plates = Array.prototype.slice.call(document.querySelectorAll(".hero__plate"));
+  var pointer = { x:0, y:0, tx:0, ty:0 };
+  if (!REDUCED){
+    window.addEventListener("pointermove", function(e){
+      pointer.tx = (e.clientX / vw - 0.5) * 2;
+      pointer.ty = (e.clientY / vh - 0.5) * 2;
+    }, { passive:true });
+  }
+
+  /* ─────────── Secciones pinneadas ─────────── */
+  function pinProgress(sec){
+    if (!sec) return 0;
+    var r = sec.getBoundingClientRect();
+    var total = sec.offsetHeight - vh;
+    if (total <= 0) return 0;
+    return clamp(-r.top / total, 0, 1);
+  }
+
+  var secWh = document.getElementById("almacen");
+  var whImg = document.getElementById("whImg");
+  var blues = secWh ? Array.prototype.slice.call(secWh.querySelectorAll(".bl-line,.bl-dim")) : [];
+  blues.forEach(function(p){
+    var len = p.getTotalLength();
+    p.style.setProperty("--len", len);
+    p.dataset.len = len;
+  });
+  var blueTexts = secWh ? Array.prototype.slice.call(secWh.querySelectorAll("svg text")) : [];
+
+  var secFleet = document.getElementById("flota");
+  var slabs = Array.prototype.slice.call(document.querySelectorAll(".fleet__slab"));
+  var SLAB_GAP = 620;
+  slabs.forEach(function(s,i){ s.dataset.bz = -i * SLAB_GAP; });
+  var slabX = [0.09, 0.26, 0.15, 0.29, 0.20];
+  var fleetIdx = document.querySelectorAll("#fleetIdx li");
+
+  /* ─────────── Layout dependiente del tamaño ─────────── */
+  function layout(){
+    vh = window.innerHeight; vw = window.innerWidth;
+    var docH = document.documentElement.scrollHeight - vh;
+    stops.forEach(function(s){
+      var top = s.sec.getBoundingClientRect().top + window.scrollY;
+      s.el.style.top = clamp(top / (docH || 1), 0, 1) * 100 + "%";
+    });
+  }
+
+  /* ─────────── Un solo bucle para todo lo atado al scroll ─────────── */
+  function frame(){
+    var y = window.scrollY || window.pageYOffset;
+    var docH = document.documentElement.scrollHeight - vh;
+    var gp = clamp(y / (docH || 1), 0, 1);
+
+    /* riel */
+    routeFill.style.height = (gp * 100) + "%";
+    routeDot.style.top = (gp * 100) + "%";
+    for (var s = 0; s < stops.length; s++){
+      var r = stops[s].sec.getBoundingClientRect();
+      var on = r.top < vh * 0.55 && r.bottom > vh * 0.35;
+      stops[s].el.classList.toggle("is-on", on);
+    }
+
+    /* nav */
+    nav.classList.toggle("is-on", y > vh * 0.72);
+
+    /* puntero suavizado */
+    pointer.x += (pointer.tx - pointer.x) * 0.06;
+    pointer.y += (pointer.ty - pointer.y) * 0.06;
+
+    /* hero: la cámara avanza por el corredor */
+    if (y < vh * 1.25){
+      var hp = clamp(y / vh, 0, 1);
+      var now = performance.now();
+      heroWorld.style.transform =
+        "translate3d(" + (pointer.x * -14) + "px," + (pointer.y * -10) + "px," + (hp * 520) + "px)";
+      var mob = vw < 820;
+      for (var i = 0; i < plates.length; i++){
+        var d = plates[i].dataset;
+        var spread = 1 + hp * 0.55;
+        plates[i].style.transform =
+          "translate3d(calc(-50% + " + (parseFloat(d.x) * spread + pointer.x * 2.6) + "vw)," +
+          "calc(-50% + " + (parseFloat(d.y) * spread * (mob ? 1.45 : 1) - (mob ? 14 : 0) + pointer.y * 2.2) + "vh)," +
+          (parseFloat(d.z) + hp * 140) + "px) " +
+          "rotateY(" + d.r + "deg)";
+        var entra = REDUCED ? 1 : clamp((now - T0 - 260 - i * 150) / 900, 0, 1);
+        plates[i].style.opacity = ((1 - hp * 0.85) * entra * (mob ? 0.4 : 1)).toFixed(3);
+      }
+    }
+
+    /* almacén: la nave se acerca y el plano se dibuja */
+    if (secWh){
+      var wp = pinProgress(secWh);
+      if (whImg) whImg.style.transform = "scale(" + (1.12 + wp * 0.1) + ") translate3d(0," + (wp * -4) + "%,0)";
+      if (!REDUCED){
+        var draw = clamp(wp / 0.45, 0, 1);
+        for (var b = 0; b < blues.length; b++){
+          blues[b].style.strokeDashoffset = (1 - draw) * parseFloat(blues[b].dataset.len);
+        }
+      }
+      for (var t = 0; t < blueTexts.length; t++){
+        blueTexts[t].classList.toggle("is-on", wp > 0.34 + t * 0.045);
+      }
+    }
+
+    /* flota: la cámara recorre las unidades en profundidad */
+    if (secFleet){
+      var fp = pinProgress(secFleet);
+      var travel = fp * ((slabs.length - 1) * SLAB_GAP);
+      var front = 0, frontD = 1e9;
+      for (var m = 0; m < slabs.length; m++){
+        var wz = parseFloat(slabs[m].dataset.bz) + travel;
+        var fadeIn  = clamp((wz + 1900) / 620, 0, 1);
+        var fadeOut = clamp((190 - wz) / 340, 0, 1);
+        var op = fadeIn * fadeOut;
+        slabs[m].style.transform =
+          "translate3d(" + (slabX[m % slabX.length] * vw + pointer.x * 26) + "px," +
+          ((m % 2 ? 1 : -1) * 0.055 * vh + pointer.y * 18) + "px," + wz + "px) " +
+          "rotateY(" + (slabX[m % slabX.length] > 0 ? -10 : 10) + "deg)";
+        /* la opacidad va en la tarjeta, no en el slab: un slab semitransparente
+           crea contexto de apilamiento y rompe el orden por profundidad */
+        slabs[m].firstElementChild.style.opacity = op.toFixed(3);
+        /* fuera del recorrido no se rasteriza: las que quedan detrás de la cámara
+           llegan a ocupar varias pantallas y cuestan caro */
+        slabs[m].style.visibility = op < 0.02 ? "hidden" : "visible";
+        if (op > 0.02 && Math.abs(wz) < frontD){ frontD = Math.abs(wz); front = m; }
+      }
+      for (var q = 0; q < fleetIdx.length; q++) fleetIdx[q].classList.toggle("is-on", q === front);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  /* ─────────── Inclinación por puntero ─────────── */
+  if (!REDUCED){
+    document.querySelectorAll("[data-tilt]").forEach(function(card){
+      var host = card.parentElement;
+      host.addEventListener("pointermove", function(e){
+        var r = host.getBoundingClientRect();
+        var nx = (e.clientX - r.left) / r.width - 0.5;
+        var ny = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = "rotateY(" + (nx * 11) + "deg) rotateX(" + (-ny * 8) + "deg) translateZ(12px)";
+      });
+      host.addEventListener("pointerleave", function(){ card.style.transform = ""; });
+    });
+  }
+
+  layout();
+  window.addEventListener("resize", layout, { passive:true });
+  window.addEventListener("orientationchange", layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  window.addEventListener("load", layout);
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   Formulario de contacto
+
+   PASO OBLIGATORIO ANTES DE PUBLICAR: completa estas dos constantes con
+   los datos reales de CR Transport. Mientras estén vacías, el formulario
+   avisa que el canal de contacto todavía no está activo en vez de
+   enviar a ninguna parte.
+
+     WHATSAPP  → número con código de país y sin signos.  Ej: "51987654321"
+     CORREO    → correo comercial de CR Transport.
+   ════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+
+  var WHATSAPP = "";      /* ← completar */
+  var CORREO   = "";      /* ← completar */
+
+  var form = document.getElementById("askForm");
+  if (!form) return;
+  var note = document.getElementById("askNote");
+  var send = document.getElementById("askSend");
+  var wa   = document.getElementById("askWa");
+
+  function val(n){ var el = form.elements[n]; return el ? el.value.trim() : ""; }
+  function datos(){ return { nombre: val("nombre"), contacto: val("contacto"), mensaje: val("mensaje") }; }
+
+  function cuerpo(d){
+    var t = "Hola CR Transport, ";
+    t += d.nombre ? "les escribe " + d.nombre + "." : "quisiera una cotización.";
+    if (d.mensaje)  t += "\n\n" + d.mensaje;
+    if (d.contacto) t += "\n\nMi contacto: " + d.contacto;
+    return t;
+  }
+  function urlWa(d){ return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(cuerpo(d)); }
+  function urlMail(d){
+    return "mailto:" + CORREO
+         + "?subject=" + encodeURIComponent("Consulta desde la web" + (d.nombre ? " — " + d.nombre : ""))
+         + "&body=" + encodeURIComponent(cuerpo(d));
+  }
+  function decir(html, tipo){
+    note.className = "form__note" + (tipo ? " is-" + tipo : "");
+    note.innerHTML = html;
+  }
+
+  if (!WHATSAPP){
+    wa.setAttribute("aria-disabled","true");
+    wa.style.opacity = ".45";
+    wa.style.pointerEvents = "none";
+  }
+  form.addEventListener("input", function(){ if (WHATSAPP) wa.href = urlWa(datos()); });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (val("_honey")) return;
+
+    var d = datos();
+    if (!d.nombre || !d.contacto || !d.mensaje){
+      decir("Complete los tres campos para poder responderle.", "warn");
+      return;
+    }
+    if (!WHATSAPP && !CORREO){
+      decir("El canal de contacto todavía no está activo en esta página.", "warn");
+      return;
+    }
+    if (WHATSAPP){
+      window.open(urlWa(d), "_blank", "noopener");
+      var extra = CORREO ? ' Si prefiere correo, <a href="' + urlMail(d) + '">envíelo desde aquí</a>.' : "";
+      decir("Le abrimos WhatsApp con el mensaje ya escrito." + extra, "ok");
+      return;
+    }
+    window.location.href = urlMail(d);
+    decir("Le abrimos su correo con el mensaje ya escrito.", "ok");
+  });
+})();
+</script>
