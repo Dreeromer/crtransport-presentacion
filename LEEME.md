@@ -21,27 +21,17 @@ Teléfono **944 600 229**, correo **Rmenacho@transport-cr.com**, dirección
 del final de `index.html` ya están completas, así que el formulario arma el
 mensaje y lo abre en WhatsApp (o en el correo) con los datos ya escritos.
 
-### Lo único que sigue en ámbar
+### ✅ Ya no queda nada pendiente
 
-Quedan 4 datos con subrayado punteado que dicen **"por confirmar"**, todos en la
-tabla de flota:
+La página no tiene ningún dato marcado como "por confirmar". La tabla de flota
+lista los tipos de unidad, su capacidad y para qué se usa cada una, **sin decir
+cuántas unidades hay de cada tipo** — decisión del cliente.
 
-| Dónde | Qué falta |
-|---|---|
-| Flota | N.º de furgonetas y vans |
-| Flota | N.º de camiones furgón |
-| Flota | N.º de semitrailers y plataformas |
-| Flota | N.º de camas bajas |
-
-Para cambiarlos, busca `class="tbc"` en el archivo y reemplaza el texto por el
-dato real. Cuando pongas el dato, quita también `class="tbc"` para que deje de
-salir en ámbar:
+Si alguna vez hace falta volver a marcar un dato como pendiente, la clase `.tbc`
+sigue en el CSS: pinta el texto en ámbar con subrayado punteado.
 
 ```html
-<!-- antes -->
-<span class="tbc" title="Falta el dato">m² por confirmar</span>
-<!-- después -->
-<span>1,200 m²</span>
+<span class="tbc" title="Falta el dato">por confirmar</span>
 ```
 
 ---
