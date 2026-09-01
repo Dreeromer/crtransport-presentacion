@@ -243,7 +243,7 @@ section{position:relative}
 
 /* ═══════════════════════ CIFRAS ═══════════════════════ */
 .facts{border-block:1px solid var(--line-soft);background:linear-gradient(180deg,rgba(12,21,51,.5),transparent)}
-.facts__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.facts__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 .fact{padding:clamp(1.6rem,3.4vw,2.6rem) clamp(1rem,2vw,2rem);border-left:1px solid var(--line-soft)}
 .fact:first-child{border-left:0}
 .fact b{display:block;font-size:clamp(2rem,4.4vw,3.4rem);font-weight:700;
@@ -255,7 +255,7 @@ section{position:relative}
 .fact b em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:.28em;
   letter-spacing:.14em;text-transform:uppercase;color:var(--dim);vertical-align:.42em;margin:0 .3em 0 0}
 .fact b em + span + em{margin-left:.3em}
-@media(max-width:760px){.facts__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){.facts__grid{grid-template-columns:1fr}
   .fact:nth-child(3){border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line-soft)}}
 
 /* ═══════════════════════ NOSOTROS ═══════════════════════ */
@@ -539,10 +539,8 @@ section{position:relative}
   <ul class="nav__links">
     <li><a href="#empresa">Empresa</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#almacen">Almacén Chiclayo</a></li>
     <li><a href="#flota">Flota</a></li>
     <li><a href="#cobertura">Cobertura</a></li>
-    <li><a href="#trazabilidad">Trazabilidad</a></li>
     <li><a href="#clientes">Clientes</a></li>
   </ul>
   <a class="nav__cta" href="#contacto">Cotizar</a>
@@ -559,19 +557,19 @@ section{position:relative}
         <div class="floor__rush"></div>
       </div>
       <div class="hero__plate" data-x="20" data-y="-33" data-z="-190" data-r="-7">
-        <img src="img/rig-lowboy.webp" alt="" width="1192" height="800" decoding="async" fetchpriority="high">
-        <span>Cama baja · carga ancha</span>
+        <img src="img/n-lowboy-cont.webp" alt="" width="1600" height="900" decoding="async" fetchpriority="high">
+        <span>Cama baja · carga sobredimensionada</span>
       </div>
       <div class="hero__plate hero__plate--far" data-x="41" data-y="-16" data-z="-470" data-r="-5">
-        <img src="img/truck-green.webp" alt="" width="1096" height="708" decoding="async">
+        <img src="img/n-flota-patio.webp" alt="" width="1599" height="899" decoding="async">
         <span>Furgón · reparto</span>
       </div>
       <div class="hero__plate" data-x="26" data-y="1" data-z="-560" data-r="-9">
-        <img src="img/rig-flatbed.webp" alt="" width="1136" height="682" decoding="async" fetchpriority="high">
+        <img src="img/n-plataforma-toldo.webp" alt="" width="1599" height="899" decoding="async" fetchpriority="high">
         <span>Plataforma · material de obra</span>
       </div>
       <div class="hero__plate hero__plate--far" data-x="46" data-y="12" data-z="-300" data-r="-6">
-        <img src="img/truck-blue.webp" alt="" width="1070" height="690" decoding="async">
+        <img src="img/n-furgon-lateral.webp" alt="" width="1152" height="864" decoding="async">
         <span>Furgón · abastecimiento</span>
       </div>
       </div>
@@ -579,9 +577,9 @@ section{position:relative}
   </div>
 
     <div class="hero__copy">
-    <span class="mono hero__eyebrow">CR Transport <b>·</b> CR Proveedores Industriales Selva SAC <b>·</b> RUC 20602143679</span>
+    <span class="mono hero__eyebrow">CR Transport <b>·</b> CR Proveedores Industriales SAC <b>·</b> RUC 20602143679</span>
     <h1 style="max-width:13ch">Su carga, siempre en el mapa</h1>
-    <p class="hero__sub">Transporte de carga terrestre con flota y personal propios. Nueve años moviendo carga pesada, abastecimiento a tiendas y última milla en la costa peruana — y desde Tarapoto, hacia el nororiente. Cada unidad, monitoreada por GPS durante todo el trayecto.</p>
+    <p class="hero__sub">Fundada en 2016 con una idea clara: que cada entrega llegue a tiempo, completa y segura. Hoy movemos carga pesada y sobredimensionada en todo el territorio nacional, con flota y personal propios.</p>
   </div>
   <div class="hero__cue"><i></i><span class="mono label--mute">Recorrer</span></div>
 </header>
@@ -589,10 +587,9 @@ section{position:relative}
 <!-- ═══════════════════════ CIFRAS ═══════════════════════ -->
 <section class="facts" aria-label="Cifras de operación">
   <div class="facts__grid">
-    <div class="fact"><b><span data-count="9">0</span><i>+</i></b><span>Años de operación</span></div>
+    <div class="fact"><b><em>desde</em>2016</b><span>Año de fundación</span></div>
     <div class="fact"><b><span data-count="5">0</span></b><span>Ciudades con operación propia</span></div>
-    <div class="fact"><b><em>de</em><span data-count="1.5">0</span><em>a</em><span data-count="26">0</span></b><span>Toneladas por unidad</span></div>
-    <div class="fact"><b><span data-count="4">0</span></b><span>Sistemas de trazabilidad en uso</span></div>
+    <div class="fact"><b><em>de</em><span data-count="1.5">0</span><em>a</em><span data-count="32">0</span></b><span>Toneladas por unidad</span></div>
   </div>
 </section>
 
@@ -601,18 +598,21 @@ section{position:relative}
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-tag"><i></i><b>Empresa</b> · Capital peruano · Desde 2016</span>
-        <h2 data-rv style="max-width:15ch">Una operación que se puede <span class="hl">seguir en pantalla</span></h2>
+        <span class="sec-tag"><i></i><b>Quiénes somos</b> · Capital peruano · Desde 2016</span>
+        <h2 data-rv style="max-width:16ch">Que cada entrega llegue <span class="hl">a tiempo, completa y segura</span></h2>
       </div>
-      <p class="body" data-rv style="--i:1">CR Transport es la unidad de transporte de carga de CR Proveedores Industriales Selva SAC. Nueve años moviendo carga en la costa peruana y, desde la apertura de la filial en Tarapoto, también hacia el nororiente. Flota propia, personal en planilla y seguimiento GPS de cada unidad mientras la ruta ocurre.</p>
+      <p class="body" data-rv style="--i:1">Fundada en 2016 con esa idea clara. Hoy somos una empresa de transporte y logística que opera en todo el territorio nacional: flota propia, personal y conductores capacitados, y seguimiento GPS de cada unidad mientras la ruta ocurre.</p>
     </div>
 
     <div class="about__grid">
       <div>
         <p class="lead" data-rv>No subcontratamos la parte que importa: la unidad, el conductor y el reporte son nuestros.</p>
-        <p class="body" data-rv style="--i:1">Trabajamos para operaciones que no toleran sorpresas — reposición a tienda con ventana horaria, traslado de material de obra, despacho agroindustrial. Por eso el equipo está entrenado en cuatro plataformas de trazabilidad distintas: cada cliente sigue su carga en el sistema con el que ya trabaja, y recibe además nuestro propio reporte por corte de horario.</p>
+        <ul class="spec" data-rv style="--i:1">
+          <li><b>Misión</b><span>Mover la carga de nuestros clientes de forma segura, puntual y eficiente.</span></li>
+          <li><b>Visión</b><span>Ser el operador logístico líder en el Perú para el 2030.</span></li>
+        </ul>
         <ul class="spec" data-rv style="--i:2">
-          <li><b>Razón social</b><span>CR Proveedores Industriales Selva SAC</span></li>
+          <li><b>Razón social</b><span>CR Proveedores Industriales SAC</span></li>
           <li><b>RUC</b><span>20602143679</span></li>
           <li><b>Base de despacho</b><span>Lima</span></li>
           <li><b>Base norte</b><span>Chiclayo — almacén propio</span></li>
@@ -622,8 +622,8 @@ section{position:relative}
       </div>
       <div class="plate" data-rv style="--i:1">
         <div class="card" data-tilt>
-          <img src="img/unit-front.webp" alt="Unidad furgón de CR Transport rotulada, lista para salida" width="1440" height="2238" loading="lazy" decoding="async">
-          <span class="card__tag">Flota propia · rotulada y monitoreada</span>
+          <img src="img/n-lowboy-nave.webp" alt="Cama baja de CR Transport con carga sobredimensionada asegurada antes de salir a ruta" width="960" height="1280" loading="lazy" decoding="async">
+          <span class="card__tag">Flota propia · conductores capacitados · GPS</span>
         </div>
       </div>
     </div>
@@ -644,7 +644,7 @@ section{position:relative}
     <div class="srv">
       <article class="srv__cell" data-rv>
         <span class="srv__k">Carga pesada</span>
-        <h3>Traslado de materiales</h3>
+        <h3>Cama baja y carga sobredimensionada</h3>
         <p>Estructura, maquinaria y material de obra en semitrailer, cama baja y plataforma. Aseguramiento de estiba, permisos de carga ancha y acompañamiento durante toda la ruta.</p>
         <span class="mono">Semitrailer · Cama baja · Plataforma</span>
       </article>
@@ -663,62 +663,9 @@ section{position:relative}
       <article class="srv__cell" data-rv style="--i:3">
         <span class="srv__k">Chiclayo</span>
         <h3>Almacenamiento y distribución</h3>
-        <p>Nave propia en Chiclayo para recibir, guardar y despachar desde el norte. Se toma como servicio de almacenaje, como espacio para su operación, o como las dos cosas.</p>
+        <p>Nave propia en Chiclayo para recibir, guardar y despachar desde el norte, con la ruta al norte y al sur ya armada.</p>
         <span class="mono">Almacenaje · Cross-docking · Despacho</span>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ ALMACÉN CHICLAYO (pin) ═══════════════════════ -->
-<section class="pin" id="almacen" data-pin data-stop="Almacén" style="height:280vh">
-  <div class="pin__stage">
-    <div class="wh__bg" aria-hidden="true">
-      <img id="whImg" src="img/warehouse-empty.webp" alt="" width="1690" height="1160" loading="lazy" decoding="async">
-    </div>
-    <div class="wh__in">
-      <div>
-        <span class="sec-tag"><i></i><b>Almacén</b> · Chiclayo · 06°46′S 79°50′O</span>
-        <h2 data-rv style="max-width:14ch">Un espacio en el norte para <span class="hl">montar su operación</span></h2>
-        <p class="lead" data-rv style="--i:1;margin-top:1.3rem">Nave propia en Chiclayo, con la flota al lado y la ruta ya armada hacia Piura, Trujillo, Lima y Tarapoto.</p>
-        <ul class="wh__modes">
-          <li data-rv style="--i:2"><b>01</b><span><b style="color:var(--bone);font-family:inherit;font-size:1em;letter-spacing:0">Almacenaje con distribución.</b> Usted manda la mercadería, nosotros la recibimos, la guardamos y la despachamos.</span></li>
-          <li data-rv style="--i:3"><b>02</b><span><b style="color:var(--bone);font-family:inherit;font-size:1em;letter-spacing:0">Espacio en alquiler.</b> Toma el área que necesita y opera con su propio equipo y sus propios sistemas.</span></li>
-          <li data-rv style="--i:4"><b>03</b><span><b style="color:var(--bone);font-family:inherit;font-size:1em;letter-spacing:0">Operación llave en mano.</b> Espacio, personal, unidades y reporte diario bajo un solo contrato.</span></li>
-        </ul>
-      </div>
-
-      <!-- Plano de la nave: se dibuja conforme baja el scroll -->
-      <div class="wh__blue" aria-hidden="true">
-        <svg viewBox="-4 14 404 244" role="img">
-          <!-- patio de maniobra -->
-          <path class="bl-dim" d="M14 62 L46 62 L46 196 L14 196"></path>
-          <text class="t-dim" x="16" y="212">Patio de maniobra</text>
-          <!-- perímetro de la nave -->
-          <path class="bl-line" d="M52 62 L318 62 L318 196 L52 196 Z"></path>
-          <!-- portón -->
-          <path class="bl-line" d="M52 104 L52 154"></path>
-          <path class="bl-dim" d="M52 104 L78 118 M52 154 L78 140"></path>
-          <!-- racks sugeridos -->
-          <path class="bl-dim" d="M96 78 L96 180 M138 78 L138 180 M180 78 L180 180 M222 78 L222 180 M264 78 L264 180"></path>
-          <!-- cota superior -->
-          <path class="bl-dim" d="M52 42 L318 42 M52 36 L52 48 M318 36 L318 48"></path>
-          <text x="150" y="32" class="t-amber">Largo · por confirmar</text>
-          <!-- cota lateral -->
-          <path class="bl-dim" d="M336 62 L336 196 M330 62 L342 62 M330 196 L342 196"></path>
-          <text x="352" y="132" class="t-amber" transform="rotate(90 352 132)">Ancho · por confirmar</text>
-          <!-- altura libre -->
-          <path class="bl-dim" d="M70 196 L70 232 M64 232 L76 232"></path>
-          <text x="82" y="236" class="t-amber">Altura libre · por confirmar</text>
-          <text x="52" y="56">Nave techada</text>
-        </svg>
-        <ul class="spec" style="margin-top:1.2rem">
-          <li><b>Área techada</b><span class="tbc" title="Falta el dato">m² por confirmar</span></li>
-          <li><b>Altura libre</b><span class="tbc" title="Falta el dato">m por confirmar</span></li>
-          <li><b>Accesos</b><span class="tbc" title="Falta el dato">n.º de portones por confirmar</span></li>
-          <li><b>Dirección</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -727,27 +674,27 @@ section{position:relative}
 <section class="pin" id="flota" data-pin data-stop="Flota" style="height:320vh">
   <div class="pin__stage fleet__stage">
     <div class="fleet__space" id="fleetSpace" aria-hidden="true">
-      <div class="fleet__slab"><div class="card"><img src="img/truck-green.webp" alt="" width="1096" height="708" loading="lazy" decoding="async"><span class="card__tag">Furgón · reparto urbano</span></div></div>
-      <div class="fleet__slab"><div class="card"><img src="img/truck-blue.webp" alt="" width="1070" height="690" loading="lazy" decoding="async"><span class="card__tag">Furgón · abastecimiento a tiendas</span></div></div>
-      <div class="fleet__slab"><div class="card"><img src="img/rig-flatbed.webp" alt="" width="1136" height="682" loading="lazy" decoding="async"><span class="card__tag">Plataforma · material de obra</span></div></div>
-      <div class="fleet__slab"><div class="card"><img src="img/rig-lowboy.webp" alt="" width="1192" height="800" loading="lazy" decoding="async"><span class="card__tag">Cama baja · carga ancha</span></div></div>
-      <div class="fleet__slab"><div class="card"><img src="img/team-fleet.webp" alt="" width="1432" height="712" loading="lazy" decoding="async"><span class="card__tag">Salida de base · flota liviana</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/n-flota-patio.webp" alt="" width="1599" height="899" loading="lazy" decoding="async"><span class="card__tag">Furgón · reparto urbano</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/n-furgon-lateral.webp" alt="" width="1152" height="864" loading="lazy" decoding="async"><span class="card__tag">Furgón · abastecimiento a tiendas</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/n-plataforma-toldo.webp" alt="" width="1599" height="899" loading="lazy" decoding="async"><span class="card__tag">Plataforma · material de obra</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/n-lowboy-mina.webp" alt="" width="1280" height="960" loading="lazy" decoding="async"><span class="card__tag">Cama baja · carga sobredimensionada</span></div></div>
+      <div class="fleet__slab"><div class="card"><img src="img/n-mina-condorcocha.webp" alt="" width="1280" height="825" loading="lazy" decoding="async"><span class="card__tag">Camión grúa · minería e industria</span></div></div>
     </div>
     <div class="fleet__panel">
     <div class="fleet__head">
-      <span class="sec-tag"><i></i><b>Flota</b> · Propia · 1.5 t → 26 t</span>
+      <span class="sec-tag"><i></i><b>Flota</b> · Propia · 1.5 t → 32 t</span>
       <h2 style="max-width:11ch;font-size:clamp(1.6rem,3.2vw,2.7rem)">La unidad correcta para cada carga</h2>
     </div>
     <ol class="fleet__idx" id="fleetIdx" aria-hidden="true">
       <li>Furgón · reparto urbano</li>
       <li>Furgón · abastecimiento</li>
       <li>Plataforma · material de obra</li>
-      <li>Cama baja · carga ancha</li>
-      <li>Salida de base · flota liviana</li>
+      <li>Cama baja · carga sobredimensionada</li>
+      <li>Camión grúa · minería e industria</li>
     </ol>
     </div>
     <div class="fleet__hud">
-      <p class="body">Flota propia de distintas capacidades, monitoreada por GPS y con personal de soporte asignado para responder ante cualquier inconveniente en ruta.</p>
+      <p class="body">Flota propia de 1.5 a 32 toneladas, con traslado de camiones cama baja y carga sobredimensionada, monitoreada por GPS y con personal de soporte asignado ante cualquier inconveniente en ruta.</p>
     </div>
   </div>
 </section>
@@ -759,7 +706,8 @@ section{position:relative}
       <tbody>
         <tr><td>Furgonetas y vans</td><td class="num">desde 1.5 t</td><td>Última milla, reparto por distrito, entregas a domicilio</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
         <tr><td>Camiones furgón</td><td class="num">carga seca</td><td>Abastecimiento a tiendas y rutas interprovinciales</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
-        <tr><td>Semitrailers y plataformas</td><td class="num">hasta 26 t</td><td>Traslado de materiales, carga pesada y sobredimensionada</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
+        <tr><td>Semitrailers y plataformas</td><td class="num">hasta 32 t</td><td>Traslado de materiales y carga pesada</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
+        <tr><td>Cama baja</td><td class="num">carga ancha</td><td>Maquinaria, estructura y carga sobredimensionada con permisos</td><td><span class="tbc" title="Falta el dato">por confirmar</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -826,6 +774,24 @@ section{position:relative}
         </g>
       </svg>
     </div>
+
+    <div class="about__grid" style="margin-top:clamp(2.4rem,5vw,4rem)">
+      <div>
+        <span class="sec-tag"><i></i><b>Chiclayo</b> · Nave propia</span>
+        <p class="lead" data-rv style="margin-top:1.2rem">Por Chiclayo no solo pasamos: tenemos nave propia, con la flota al lado y la ruta ya armada hacia Piura, Trujillo, Lima y Tarapoto.</p>
+        <ul class="spec" data-rv style="--i:1">
+          <li><b>Almacenaje</b><span>Recibimos, guardamos y despachamos su mercadería desde el norte.</span></li>
+          <li><b>Espacio</b><span>Toma el área que necesita y opera con su propio equipo.</span></li>
+          <li><b>Llave en mano</b><span>Espacio, personal, unidades y reporte diario bajo un solo contrato.</span></li>
+        </ul>
+      </div>
+      <div class="plate" data-rv style="--i:1">
+        <div class="card" data-tilt>
+          <img src="img/n-almacen-b.webp" alt="Nave propia en Chiclayo con mercadería lista para despacho" width="900" height="1600" loading="lazy" decoding="async">
+          <span class="card__tag">Nave propia · Chiclayo</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -842,72 +808,23 @@ section{position:relative}
 
     <div class="sect">
       <article class="sect__cell" data-rv>
-        <img src="img/rig-lowboy.webp" alt="Cama baja para carga ancha en ruta" width="1192" height="800" loading="lazy" decoding="async">
+        <img src="img/n-mina-descarga.webp" alt="Descarga de carga en operación minera de altura" width="720" height="1280" loading="lazy" decoding="async">
         <span class="label">Minería e industria</span>
         <h3>Carga ancha y sobredimensionada</h3>
         <p>Estructura y maquinaria en cama baja y plataforma, con permisos y acompañamiento en ruta.</p>
       </article>
       <article class="sect__cell" data-rv style="--i:1">
-        <img src="img/rig-flatbed.webp" alt="Plataforma cargada con material en ruta" width="1136" height="682" loading="lazy" decoding="async">
+        <img src="img/n-carretera.webp" alt="Semitrailer entoldado en ruta interprovincial" width="719" height="1280" loading="lazy" decoding="async">
         <span class="label">Agroindustria</span>
         <h3>Campaña que no espera</h3>
         <p>Movimiento de insumo y producto en ventana de campaña, con unidades asignadas por temporada.</p>
       </article>
       <article class="sect__cell" data-rv style="--i:2">
-        <img src="img/warehouse-stock.webp" alt="Almacén con mercadería paletizada lista para despacho" width="1722" height="830" loading="lazy" decoding="async">
+        <img src="img/n-retail-calle.webp" alt="Descarga de mercadería en punto de venta" width="1600" height="1200" loading="lazy" decoding="async">
         <span class="label">Retail</span>
         <h3>Reposición con ventana horaria</h3>
         <p>Ruta cerrada por zona, salida a primera hora y confirmación de entrega tienda por tienda.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ TRAZABILIDAD ═══════════════════════ -->
-<section class="sec" id="trazabilidad" data-stop="Trazabilidad">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="sec-tag"><i></i><b>Trazabilidad</b> · Cuatro plataformas · Reporte propio</span>
-        <h2 data-rv style="max-width:15ch">Su carga se sigue en el sistema que <span class="hl">usted ya usa</span></h2>
-      </div>
-      <p class="body" data-rv style="--i:1">El equipo está entrenado en cuatro plataformas de trazabilidad distintas. Eso permite coordinar con el sistema que el cliente ya tiene montado, en lugar de obligarlo a mirar el nuestro. Encima de eso entregamos un reporte propio de los servicios realizados, por corte de horario.</p>
-    </div>
-
-    <div class="trace">
-      <div>
-        <div class="stack" data-rv>
-          <div class="chip"><img src="img/trk-beetrack.webp" alt="Beetrack" width="640" height="240" loading="lazy" decoding="async"></div>
-          <div class="chip"><img src="img/trk-wisetrack.webp" alt="Wisetrack Perú" width="640" height="240" loading="lazy" decoding="async"></div>
-          <div class="chip"><img src="img/trk-unigis.webp" alt="Unigis" width="640" height="240" loading="lazy" decoding="async"></div>
-          <div class="chip"><img src="img/trk-simpliroute.webp" alt="SimpliRoute" width="640" height="240" loading="lazy" decoding="async"></div>
-        </div>
-        <ul class="spec" data-rv style="--i:1">
-          <li><b>En ruta</b><span>Posición GPS de la unidad en tiempo real</span></li>
-          <li><b>Por punto</b><span>Estado de entrega y semáforo de avance</span></li>
-          <li><b>Por corte</b><span>Reporte de servicios realizados según horario acordado</span></li>
-          <li><b>Al cierre</b><span>Guía firmada de vuelta</span></li>
-        </ul>
-      </div>
-
-      <div class="sheet" id="sheet" data-rv style="--i:1">
-        <div class="sheet__top">
-          <span>Programación de ruta <b>· ejemplo</b></span>
-          <span>Hora en base <b>07:00</b></span>
-          <span>Unidades <b>4</b></span>
-        </div>
-        <div class="sheet__scroll"><table>
-          <thead><tr><th>Unidad</th><th>Zona</th><th style="text-align:right">Puntos</th></tr></thead>
-          <tbody>
-            <tr><td class="u">Unidad 1</td><td>Ate · Chaclacayo · Cieneguilla · La Molina · SJL</td><td class="n">12</td></tr>
-            <tr><td class="u">Unidad 2</td><td>San Bartolo · Miraflores · Surco · Surquillo</td><td class="n">8</td></tr>
-            <tr><td class="u">Unidad 3</td><td>Carabayllo · Comas · Rímac · San Martín de Porres</td><td class="n">7</td></tr>
-            <tr><td class="u">Unidad 4</td><td>Breña · La Victoria · Magdalena · San Borja · San Isidro</td><td class="n">10</td></tr>
-          </tbody>
-        </table></div>
-        <div class="sheet__bar"><i></i></div>
-        <div class="sheet__foot"><span>Avance del día</span><span><b>27 de 37 puntos</b></span></div>
-      </div>
     </div>
   </div>
 </section>
@@ -918,21 +835,21 @@ section{position:relative}
     <div class="sec-head">
       <div>
         <span class="sec-tag"><i></i><b>Equipo</b> · Personal propio</span>
-        <h2 data-rv style="max-width:15ch">Conductores, auxiliares y supervisión de flota</h2>
+        <h2 data-rv style="max-width:16ch">El que sube a la unidad es <span class="hl">el que responde por la carga</span></h2>
       </div>
-      <p class="body" data-rv style="--i:1">Conductores, auxiliares, supervisores de flota, coordinadores de operación y personal administrativo. La charla de seguridad de las 6:30 y el control de salida son parte del servicio, no un extra.</p>
+      <p class="body" data-rv style="--i:1">Conductores, auxiliares, supervisores de flota y coordinadores de operación en planilla, capacitados y con función asignada. Ninguna unidad sale sin charla de seguridad, sin la carga verificada y sin un responsable con nombre detrás de cada guía. Esa disciplina es la que sostiene la entrega.</p>
     </div>
     <div class="sect" style="margin-top:clamp(2rem,4vw,3rem)">
       <article class="sect__cell" data-rv style="min-height:clamp(240px,26vw,340px)">
-        <img src="img/team-crew.webp" alt="Equipo de operación en almacén antes del turno" width="1432" height="712" loading="lazy" decoding="async">
-        <span class="label">Operación</span><h3>Cuadrilla de carga y descarga</h3>
-      </article>
-      <article class="sect__cell" data-rv style="--i:1;min-height:clamp(240px,26vw,340px)">
-        <img src="img/team-brief.webp" alt="Charla de seguridad antes de salir a ruta" width="1360" height="770" loading="lazy" decoding="async">
+        <img src="img/n-equipo.webp" alt="Personal de operación de CR Transport formado en base antes del turno" width="1600" height="900" loading="lazy" decoding="async">
         <span class="label">Seguridad</span><h3>Charla previa a la salida</h3>
       </article>
+      <article class="sect__cell" data-rv style="--i:1;min-height:clamp(240px,26vw,340px)">
+        <img src="img/n-retail-descarga.webp" alt="Auxiliares descargando mercadería en el punto de entrega" width="900" height="1600" loading="lazy" decoding="async">
+        <span class="label">Operación</span><h3>Cuadrilla de carga y descarga</h3>
+      </article>
       <article class="sect__cell" data-rv style="--i:2;min-height:clamp(240px,26vw,340px)">
-        <img src="img/team-fleet.webp" alt="Conductores junto a la flota liviana en base" width="1432" height="712" loading="lazy" decoding="async">
+        <img src="img/n-flota-nave.webp" alt="Flota liviana estacionada en base antes de la salida" width="1599" height="899" loading="lazy" decoding="async">
         <span class="label">Flota</span><h3>Conductores asignados por ruta</h3>
       </article>
     </div>
@@ -975,7 +892,7 @@ section{position:relative}
         <h2 data-rv style="max-width:12ch">Cuéntenos qué necesita mover</h2>
         <p class="body" data-rv style="--i:1;margin-top:1.4rem">Indíquenos origen, destino, tipo de carga y frecuencia, y le respondemos con una propuesta. Si lo que busca es espacio de almacén en Chiclayo, dígalo también — se cotiza aparte.</p>
         <ul class="spec" data-rv style="--i:2">
-          <li><b>Razón social</b><span>CR Proveedores Industriales Selva SAC</span></li>
+          <li><b>Razón social</b><span>CR Proveedores Industriales SAC</span></li>
           <li><b>RUC</b><span>20602143679</span></li>
           <li><b>Teléfono</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
           <li><b>Correo</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
@@ -997,7 +914,7 @@ section{position:relative}
     </div>
 
     <div class="foot">
-      <p>CR Transport · CR Proveedores Industriales Selva SAC</p>
+      <p>CR Transport · CR Proveedores Industriales SAC</p>
       <p>Lima · Chiclayo · Trujillo · Piura · Tarapoto</p>
       <p>RUC 20602143679</p>
     </div>
