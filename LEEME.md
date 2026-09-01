@@ -14,25 +14,17 @@ igual desde un servidor, desde una USB o sin señal.
 
 ## ⚠️ Antes de enseñársela al cliente
 
-Hay dos cosas pendientes. La primera es obligatoria.
+### ✅ El contacto ya está activo
 
-### 1. Activar el contacto (obligatorio)
+Teléfono **944 600 229**, correo **Rmenacho@transport-cr.com**, dirección
+**Av. Las Artes 1286 — San Borja, Lima**. Las constantes `WHATSAPP` y `CORREO`
+del final de `index.html` ya están completas, así que el formulario arma el
+mensaje y lo abre en WhatsApp (o en el correo) con los datos ya escritos.
 
-Abre `index.html`, busca `PASO OBLIGATORIO` (está casi al final) y completa:
+### Lo único que sigue en ámbar
 
-```js
-var WHATSAPP = "";      /* ← ejemplo: "51987654321" (país + número, sin signos) */
-var CORREO   = "";      /* ← ejemplo: "comercial@crtransport.pe" */
-```
-
-Mientras estén vacías, el botón de WhatsApp aparece apagado y el formulario
-avisa que el canal todavía no está activo. Con el número puesto, el formulario
-arma el mensaje y lo abre en WhatsApp con los datos ya escritos.
-
-### 2. Completar los datos en ámbar
-
-En la página quedan 7 datos marcados en color ámbar con subrayado punteado que
-dicen **"por confirmar"**:
+Quedan 4 datos con subrayado punteado que dicen **"por confirmar"**, todos en la
+tabla de flota:
 
 | Dónde | Qué falta |
 |---|---|
@@ -40,9 +32,6 @@ dicen **"por confirmar"**:
 | Flota | N.º de camiones furgón |
 | Flota | N.º de semitrailers y plataformas |
 | Flota | N.º de camas bajas |
-| Contacto | Teléfono |
-| Contacto | Correo |
-| Contacto | Dirección |
 
 Para cambiarlos, busca `class="tbc"` en el archivo y reemplaza el texto por el
 dato real. Cuando pongas el dato, quita también `class="tbc"` para que deje de
@@ -163,3 +152,25 @@ logos de clientes); el resto entra por `loading="lazy"` conforme se hace scroll.
 
 Si cambias una foto, acuérdate de regenerar sus dos variantes y de actualizar el
 `srcset`; si no, el celular se bajará la original completa.
+
+
+---
+
+## Correcciones de la v2.1
+
+- **Se quitaron las repeticiones.** "Desde 2016" y el rango "1.5 a 32 t" ahora
+  aparecen una sola vez cada uno, en la fila de cifras. Los textos de portada,
+  Quiénes somos y Flota ya no los repiten (el rango sigue en la tabla de flota,
+  desglosado por tipo de unidad, que es donde sirve).
+- **Bug corregido en iPhone.** Las fotos de la sección Flota se estiraban a la
+  altura de la pantalla y se veía solo el fondo. La causa: `.card img` tiene
+  `height:100%` y la tarjeta de esa sección no tenía altura definida — Chrome lo
+  resuelve con el `aspect-ratio` de la imagen, pero WebKit (el motor de Safari y
+  de Chrome en iPhone) lo resuelve contra el viewport. Se arregló poniendo
+  `aspect-ratio:16/10` en `.fleet__slab .card`.
+  **Cuidado al añadir tarjetas nuevas:** si usas `.card` con una imagen dentro,
+  la tarjeta necesita `aspect-ratio` o `min-height`, o se romperá igual en iOS.
+- **Título de Equipo nuevo:** "La carga no la mueve la flota, la mueve la gente".
+
+Probado con WebKit a 390×844 (iPhone): las alturas de todas las imágenes
+coinciden ya con las de Chrome.

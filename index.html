@@ -268,6 +268,9 @@ section{position:relative}
 .spec b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.62rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--dim);padding-top:.15rem}
 .spec span{color:#CBD4EA}
+.spec a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);
+  transition:color var(--t-short) var(--e),border-color var(--t-short) var(--e)}
+.spec a:hover{color:var(--lime);border-color:var(--lime)}
 .plate{position:relative;perspective:1000px}
 .about__grid .card{aspect-ratio:4/5}
 .about__grid .card img{height:100%}
@@ -336,7 +339,7 @@ section{position:relative}
 .fleet__space{position:absolute;inset:0;transform-style:preserve-3d}
 .fleet__slab{position:absolute;left:50%;top:50%;width:min(34vw,450px);margin-left:min(-17vw,-225px);margin-top:-13vh;
   transform-style:preserve-3d;will-change:transform,opacity}
-.fleet__slab .card{box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.fleet__slab .card{box-shadow:0 40px 90px rgba(0,0,0,.6);aspect-ratio:16/10}
 .fleet__slab img{aspect-ratio:16/10}
 .fleet__hud{position:absolute;left:calc(var(--gut) + var(--rail));bottom:clamp(3.5rem,10vh,6rem);z-index:4;max-width:30ch}
 .fleet__panel{position:absolute;left:calc(var(--gut) + var(--rail));top:clamp(4.5rem,11vh,7rem);z-index:4;
@@ -579,7 +582,7 @@ section{position:relative}
     <div class="hero__copy">
     <span class="mono hero__eyebrow">CR Transport <b>·</b> CR Proveedores Industriales SAC <b>·</b> RUC 20602143679</span>
     <h1 style="max-width:13ch">Su carga, siempre en el mapa</h1>
-    <p class="hero__sub">Fundada en 2016 con una idea clara: que cada entrega llegue a tiempo, completa y segura. Hoy movemos carga pesada y sobredimensionada en todo el territorio nacional, con flota y personal propios.</p>
+    <p class="hero__sub">Carga pesada, sobredimensionada y abastecimiento a tiendas en todo el territorio nacional, con flota y personal propios. Cada unidad, monitoreada por GPS durante todo el trayecto.</p>
   </div>
   <div class="hero__cue"><i></i><span class="mono label--mute">Recorrer</span></div>
 </header>
@@ -598,10 +601,10 @@ section{position:relative}
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-tag"><i></i><b>Quiénes somos</b> · Capital peruano · Desde 2016</span>
+        <span class="sec-tag"><i></i><b>Quiénes somos</b> · Capital peruano · Flota propia</span>
         <h2 data-rv style="max-width:16ch">Que cada entrega llegue <span class="hl">a tiempo, completa y segura</span></h2>
       </div>
-      <p class="body" data-rv style="--i:1">Fundada en 2016 con esa idea clara. Hoy somos una empresa de transporte y logística que opera en todo el territorio nacional: flota propia, personal y conductores capacitados, y seguimiento GPS de cada unidad mientras la ruta ocurre.</p>
+      <p class="body" data-rv style="--i:1">Nacimos con esa idea clara y hoy somos una empresa de transporte y logística que opera en todo el territorio nacional: flota propia, personal y conductores capacitados, y seguimiento GPS de cada unidad mientras la ruta ocurre.</p>
     </div>
 
     <div class="about__grid">
@@ -614,7 +617,7 @@ section{position:relative}
         <ul class="spec" data-rv style="--i:2">
           <li><b>Razón social</b><span>CR Proveedores Industriales SAC</span></li>
           <li><b>RUC</b><span>20602143679</span></li>
-          <li><b>Base de despacho</b><span>Lima</span></li>
+          <li><b>Base de despacho</b><span>Lima — Av. Las Artes 1286, San Borja</span></li>
           <li><b>Base norte</b><span>Chiclayo — almacén propio</span></li>
           <li><b>Filial</b><span>Tarapoto — nororiente</span></li>
           <li><b>Sectores</b><span>Retail · Agroindustria · Minería · Industria</span></li>
@@ -682,7 +685,7 @@ section{position:relative}
     </div>
     <div class="fleet__panel">
     <div class="fleet__head">
-      <span class="sec-tag"><i></i><b>Flota</b> · Propia · 1.5 t → 32 t</span>
+      <span class="sec-tag"><i></i><b>Flota</b> · Propia · Cinco tipos de unidad</span>
       <h2 style="max-width:11ch;font-size:clamp(1.6rem,3.2vw,2.7rem)">La unidad correcta para cada carga</h2>
     </div>
     <ol class="fleet__idx" id="fleetIdx" aria-hidden="true">
@@ -694,7 +697,7 @@ section{position:relative}
     </ol>
     </div>
     <div class="fleet__hud">
-      <p class="body">Flota propia de 1.5 a 32 toneladas, con traslado de camiones cama baja y carga sobredimensionada, monitoreada por GPS y con personal de soporte asignado ante cualquier inconveniente en ruta.</p>
+      <p class="body">Desde la furgoneta de reparto hasta la cama baja para carga sobredimensionada. Toda la flota es propia, monitoreada por GPS y con personal de soporte asignado ante cualquier inconveniente en ruta.</p>
     </div>
   </div>
 </section>
@@ -835,7 +838,7 @@ section{position:relative}
     <div class="sec-head">
       <div>
         <span class="sec-tag"><i></i><b>Equipo</b> · Personal propio</span>
-        <h2 data-rv style="max-width:16ch">El que sube a la unidad es <span class="hl">el que responde por la carga</span></h2>
+        <h2 data-rv style="max-width:16ch">La carga no la mueve la flota, <span class="hl">la mueve la gente</span></h2>
       </div>
       <p class="body" data-rv style="--i:1">Conductores, auxiliares, supervisores de flota y coordinadores de operación en planilla, capacitados y con función asignada. Ninguna unidad sale sin charla de seguridad, sin la carga verificada y sin un responsable con nombre detrás de cada guía. Esa disciplina es la que sostiene la entrega.</p>
     </div>
@@ -894,9 +897,9 @@ section{position:relative}
         <ul class="spec" data-rv style="--i:2">
           <li><b>Razón social</b><span>CR Proveedores Industriales SAC</span></li>
           <li><b>RUC</b><span>20602143679</span></li>
-          <li><b>Teléfono</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
-          <li><b>Correo</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
-          <li><b>Dirección</b><span class="tbc" title="Falta el dato">por confirmar</span></li>
+          <li><b>Teléfono</b><span><a href="tel:+51944600229">944 600 229</a></span></li>
+          <li><b>Correo</b><span><a href="mailto:Rmenacho@transport-cr.com">Rmenacho@transport-cr.com</a></span></li>
+          <li><b>Dirección</b><span>Av. Las Artes 1286 — San Borja, Lima</span></li>
         </ul>
       </div>
 
@@ -916,7 +919,7 @@ section{position:relative}
     <div class="foot">
       <p>CR Transport · CR Proveedores Industriales SAC</p>
       <p>Lima · Chiclayo · Trujillo · Piura · Tarapoto</p>
-      <p>RUC 20602143679</p>
+      <p>RUC 20602143679 · 944 600 229</p>
     </div>
   </div>
 </section>
@@ -1212,8 +1215,8 @@ section{position:relative}
 (function(){
   "use strict";
 
-  var WHATSAPP = "";      /* ← completar */
-  var CORREO   = "";      /* ← completar */
+  var WHATSAPP = "51944600229";
+  var CORREO   = "Rmenacho@transport-cr.com";
 
   var form = document.getElementById("askForm");
   if (!form) return;
