@@ -910,7 +910,7 @@ section{position:relative}
         <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form__row">
           <button class="btn" type="submit" id="askSend">Enviar consulta</button>
-          <a class="btn btn--ghost" id="askWa" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+          <a class="btn btn--ghost" id="askWa" href="https://wa.me/51944600229" target="_blank" rel="noopener">Escribir por WhatsApp</a>
         </div>
         <p class="form__note" id="askNote" role="status"></p>
       </form>
@@ -1245,12 +1245,29 @@ section{position:relative}
     note.innerHTML = html;
   }
 
+  /* Abre en pestaña nueva; si el navegador la bloquea (pasa en iOS), navega
+     en la misma pestaña en vez de no hacer nada. */
+  function abrir(url){
+    /* Ojo: con la opción "noopener" window.open devuelve null por especificación,
+       así que no se puede distinguir "bloqueado" de "abierto". Se abre sin ella y
+       se corta el enlace con el opener a mano. */
+    var w = null;
+    try { w = window.open(url, "_blank"); } catch (err) { w = null; }
+    if (w){ try { w.opener = null; } catch (err) {} return true; }
+    window.location.href = url;
+    return false;
+  }
+
   if (!WHATSAPP){
     wa.setAttribute("aria-disabled","true");
     wa.style.opacity = ".45";
     wa.style.pointerEvents = "none";
+  } else {
+    /* El botón funciona desde el primer segundo, con el formulario vacío o lleno. */
+    wa.href = urlWa(datos());
+    form.addEventListener("input", function(){ wa.href = urlWa(datos()); });
+    wa.addEventListener("click", function(){ wa.href = urlWa(datos()); });
   }
-  form.addEventListener("input", function(){ if (WHATSAPP) wa.href = urlWa(datos()); });
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -1266,12 +1283,13 @@ section{position:relative}
       return;
     }
     if (WHATSAPP){
-      window.open(urlWa(d), "_blank", "noopener");
+      abrir(urlWa(d));
       var extra = CORREO ? ' Si prefiere correo, <a href="' + urlMail(d) + '">envíelo desde aquí</a>.' : "";
-      decir("Le abrimos WhatsApp con el mensaje ya escrito." + extra, "ok");
+      decir('Le abrimos WhatsApp con el mensaje ya escrito. Si no se abrió, '
+          + '<a href="' + urlWa(d) + '" target="_blank" rel="noopener">tóquelo aquí</a>.' + extra, "ok");
       return;
     }
-    window.location.href = urlMail(d);
+    abrir(urlMail(d));
     decir("Le abrimos su correo con el mensaje ya escrito.", "ok");
   });
 })();

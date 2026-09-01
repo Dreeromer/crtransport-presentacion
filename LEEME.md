@@ -171,6 +171,13 @@ Si cambias una foto, acuérdate de regenerar sus dos variantes y de actualizar e
   **Cuidado al añadir tarjetas nuevas:** si usas `.card` con una imagen dentro,
   la tarjeta necesita `aspect-ratio` o `min-height`, o se romperá igual en iOS.
 - **Título de Equipo nuevo:** "La carga no la mueve la flota, la mueve la gente".
+- **Botones de contacto arreglados.** El de "Escribir por WhatsApp" nacía con
+  `href="#"` y solo se armaba cuando el visitante escribía algo: si lo tocabas
+  al llegar, abría una pestaña en blanco. Ahora nace ya apuntando a WhatsApp con
+  un mensaje genérico y se va enriqueciendo conforme se llena el formulario.
+  "Enviar consulta" abre la pestaña nueva y, si el navegador la bloquea (pasa en
+  iPhone), navega en la misma en vez de no hacer nada; además la nota de
+  respuesta deja un enlace directo por si acaso.
 
 Probado con WebKit a 390×844 (iPhone): las alturas de todas las imágenes
 coinciden ya con las de Chrome.
