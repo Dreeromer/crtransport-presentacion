@@ -152,3 +152,14 @@ Observaciones que mandó Renato por WhatsApp, y qué se hizo con cada una:
 **Su audio del 1 set (0:19)** no traía instrucciones: solo aclara que las fotos
 son de carga pesada y sobredimensionada del sector industrial y minero, y
 pregunta si hacen falta más.
+
+### Peso en celular
+
+Cada foto existe en tres tamaños — `n-*-sm.webp` (800 px), `n-*-md.webp`
+(1200 px) y la original (hasta 1600 px) — y el `srcset` de cada `<img>` deja que
+el navegador elija según el ancho de pantalla. En un celular la carga inicial
+baja a **~286 KB** (las cuatro fotos de la portada en versión chica más los
+logos de clientes); el resto entra por `loading="lazy"` conforme se hace scroll.
+
+Si cambias una foto, acuérdate de regenerar sus dos variantes y de actualizar el
+`srcset`; si no, el celular se bajará la original completa.
