@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Menacho;Renato;;;
+FN:Renato Menacho
+ORG:CR Transport (CR Proveedores Industriales SAC)
+TEL;TYPE=CELL,VOICE:+51944600229
+EMAIL;TYPE=INTERNET,WORK:Rmenacho@transport-cr.com
+URL:https://dreeromer.github.io/crtransport-presentacion
+ADR;TYPE=WORK:;;Av. Las Artes 1286;San Borja;Lima;;Peru
+NOTE:Transporte de carga terrestre. Lima, Chiclayo, Trujillo, Piura y Tarapoto. Carga de 1.5 a 32 t, cama baja y carga sobredimensionada. RUC 20602143679.
+END:VCARD
