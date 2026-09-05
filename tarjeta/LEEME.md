@@ -25,6 +25,23 @@ Acerca la tarjeta a la parte de arriba del celular del cliente. Le salta una not
 
 Como la URL nunca cambia, el tag ya grabado sigue sirviendo aunque se edite todo lo demás.
 
-## Pendiente
+## Fondo de pantalla con QR
 
-- **Cargo de Renato**: no está puesto en la tarjeta porque no lo teníamos confirmado.
+En `wallpapers/` hay tres versiones del fondo de bloqueo, ya con el logo dentro del QR:
+
+| Archivo | Para |
+|---|---|
+| `fondo-ProMax-1290x2796.png` | iPhone 14/15/16 Pro Max, y Plus |
+| `fondo-Pro-1179x2556.png` | iPhone 14/15/16 Pro |
+| `fondo-iPhone-1170x2532.png` | iPhone 11/12/13/14 estándar |
+| `qr-crtransport-2200px.png` | El QR solo, para imprimir, vinilar o pegar en el camión |
+
+**Cómo ponerlo:** guarda la imagen en Fotos → Ajustes → Fondo de pantalla → Añadir nuevo fondo → Fotos → elígela → *Añadir* → *Definir como pareja de fondos*.
+
+El QR está colocado por debajo del reloj y por encima de los botones de linterna y cámara, así que no lo tapa nada. Verificado: decodifica incluso reducido al 25%, o sea que se escanea de lejos y a través de la pantalla.
+
+Para regenerarlos si cambia la URL: `python3 gen-wallpapers.py` (necesita `pip3 install qrcode pillow fonttools brotli`).
+
+## Corregido el 2026-09-05
+
+El correo estaba con el dominio invertido (`transport-cr.com`). Lo correcto es **rmenacho@cr-transport.com** y ya está arreglado tanto en la tarjeta como en la presentación.
